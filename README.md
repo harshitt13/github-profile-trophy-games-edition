@@ -297,6 +297,7 @@ We're constantly working on adding more gaming-themed rank icon sets! Currently 
 - 🎮 Overwatch rank tiers
 - 🎮 Apex Legends rank badges
 - 🎮 Counter-Strike rank emblems
+- 🎮 COD Mobile rank badges
 
 If you have suggestions for other game rank icons or themes, feel free to open an issue or contribute! Check [CONTRIBUTING.md](./CONTRIBUTING.md) for more details.
 
