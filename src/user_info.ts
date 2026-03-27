@@ -85,9 +85,9 @@ export class UserInfo {
 
     const languages = new Set<string>();
     userRepository.repositories.nodes.forEach((node: Repository) => {
-      if (node.languages.nodes != undefined) {
+      if (node.languages.nodes !== undefined) {
         node.languages.nodes.forEach((node: Language) => {
-          if (node != undefined) {
+          if (node !== undefined) {
             languages.add(node.name);
           }
         });
@@ -106,7 +106,7 @@ export class UserInfo {
       earliestRepoDate,
     );
 
-    const durationTime = new Date().getTime() -
+    const durationTime = Date.now() -
       new Date(earliestRepoDate).getTime();
     const durationYear = new Date(durationTime).getUTCFullYear() - 1970;
     const durationDays = Math.floor(
@@ -115,7 +115,9 @@ export class UserInfo {
     const ancientAccount = new Date(earliestRepoDate).getFullYear() <= 2010
       ? 1
       : 0;
-    const joined2020 = new Date(earliestRepoDate).getFullYear() == 2020 ? 1 : 0;
+    const joined2020 = new Date(earliestRepoDate).getFullYear() === 2020
+      ? 1
+      : 0;
     const ogAccount = new Date(earliestRepoDate).getFullYear() <= 2008 ? 1 : 0;
 
     this.totalCommits = totalCommits;

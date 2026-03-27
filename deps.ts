@@ -1,21 +1,15 @@
 import { Soxa as ServiceProvider } from "https://deno.land/x/soxa@1.4/src/core/Soxa.ts";
 import { defaults } from "https://deno.land/x/soxa@1.4/src/defaults.ts";
-import {
+export {
   assertEquals,
   assertRejects,
 } from "https://deno.land/std@0.203.0/assert/mod.ts";
-import {
+export {
   assertSpyCalls,
   returnsNext,
   spy,
   stub,
 } from "https://deno.land/std@0.203.0/testing/mock.ts";
-
-export {
-  type Bulk,
-  connect,
-  type Redis,
-} from "https://deno.land/x/redis@v0.31.0/mod.ts";
 
 import { CONSTANTS } from "./src/utils.ts";
 
@@ -27,11 +21,5 @@ const soxa = new ServiceProvider({
 });
 
 export {
-  assertEquals,
-  assertRejects,
-  assertSpyCalls,
-  returnsNext,
   soxa,
-  spy,
-  stub,
 };

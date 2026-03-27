@@ -19,8 +19,8 @@ export class Trophy {
   filterTitles: Array<string> = [];
   hidden = false;
   constructor(
-    private score: number,
-    private rankConditions: Array<RankCondition>,
+    private readonly score: number,
+    private readonly rankConditions: Array<RankCondition>,
   ) {
     this.bottomMessage = abridgeScore(score);
     this.setRank();
@@ -33,7 +33,7 @@ export class Trophy {
     const rankCondition = sortedRankConditions.find((r) =>
       this.score >= r.requiredScore
     );
-    if (rankCondition != null) {
+    if (rankCondition !== undefined) {
       this.rank = rankCondition.rank;
       this.rankCondition = rankCondition;
       this.topMessage = rankCondition.message;
@@ -50,11 +50,14 @@ export class Trophy {
     }
     const nextRank = RANK_ORDER[nextRankIndex];
     const nextRankCondition = this.rankConditions.find((r) =>
-      r.rank == nextRank
+      r.rank === nextRank
     );
-    const distance = nextRankCondition!.requiredScore -
-      this.rankCondition!.requiredScore;
-    const progress = this.score - this.rankCondition!.requiredScore;
+    if (nextRankCondition === undefined || this.rankCondition === null) {
+      return 1;
+    }
+    const distance = nextRankCondition.requiredScore -
+      this.rankCondition.requiredScore;
+    const progress = this.score - this.rankCondition.requiredScore;
     const result = progress / distance;
     return result;
   }
@@ -65,14 +68,27 @@ export class Trophy {
     panelSize = CONSTANTS.DEFAULT_PANEL_SIZE,
     noBackground = CONSTANTS.DEFAULT_NO_BACKGROUND,
     noFrame = CONSTANTS.DEFAULT_NO_FRAME,
+    iconTheme = "lol",
   ): string {
-    const { BACKGROUND: PRIMARY, TITLE: SECONDARY, TEXT, NEXT_RANK_BAR } =
-      theme;
+    const {
+      BACKGROUND: PRIMARY,
+      TITLE: SECONDARY,
+      TEXT,
+      NEXT_RANK_BAR,
+      CARD_BORDER,
+      CARD_HIGHLIGHT,
+    } = theme;
     const nextRankBar = getNextRankBar(
       this.title,
       this.calculateNextRankPercentage(),
       NEXT_RANK_BAR,
     );
+    const clip = 8;
+    const outerPath = `M${clip} 0 H${panelSize - clip} L${panelSize} ${clip} V${panelSize - clip} L${panelSize - clip} ${panelSize} H${clip} L0 ${panelSize - clip} V${clip} Z`;
+    const innerInset = 1;
+    const innerSize = panelSize - innerInset * 2;
+    const innerClip = 7;
+    const innerPath = `M${innerInset + innerClip} ${innerInset} H${innerInset + innerSize - innerClip} L${innerInset + innerSize} ${innerInset + innerClip} V${innerInset + innerSize - innerClip} L${innerInset + innerSize - innerClip} ${innerInset + innerSize} H${innerInset + innerClip} L${innerInset} ${innerInset + innerSize - innerClip} V${innerInset + innerClip} Z`;
     return `
         <svg
           x="${x}"
@@ -83,21 +99,12 @@ export class Trophy {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <rect
-            x="0.5"
-            y="0.5"
-            rx="4.5"
-            width="${panelSize - 1}"
-            height="${panelSize - 1}"
-            stroke="#e1e4e8"
-            fill="${PRIMARY}"
-            stroke-opacity="${noFrame ? "0" : "1"}"
-            fill-opacity="${noBackground ? "0" : "1"}"
-          />
-          ${getTrophyIcon(theme, this.rank)}
-          <text x="50%" y="18" text-anchor="middle" font-family="Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji" font-weight="bold" font-size="13" fill="${SECONDARY}">${this.title}</text>
-          <text x="50%" y="85" text-anchor="middle" font-family="Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji" font-weight="bold" font-size="10.5" fill="${TEXT}">${this.topMessage}</text>
-          <text x="50%" y="97" text-anchor="middle" font-family="Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji" font-weight="bold" font-size="10" fill="${TEXT}">${this.bottomMessage}</text>
+          <path d="${outerPath}" stroke="${CARD_BORDER}" fill="${PRIMARY}" stroke-opacity="${noFrame ? "0" : "1"}" fill-opacity="${noBackground ? "0" : "1"}" />
+          <path d="${innerPath}" stroke="${CARD_HIGHLIGHT}" fill="none" stroke-opacity="${noFrame ? "0" : "0.9"}" />
+          ${getTrophyIcon(theme, this.rank, iconTheme)}
+          <text x="50%" y="18" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="13" fill="${SECONDARY}">${this.title}</text>
+          <text x="50%" y="85" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10.5" fill="${TEXT}">${this.topMessage}</text>
+          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="${TEXT}">${this.bottomMessage}</text>
           ${nextRankBar}
         </svg>
         `;
@@ -109,7 +116,7 @@ export class MultipleLangTrophy extends Trophy {
     const rankConditions = [
       new RankCondition(
         RANK.SECRET,
-        "Rainbow Lang User",
+        "Multi Lang User",
         10,
       ),
     ];
@@ -125,7 +132,7 @@ export class AllSuperRankTrophy extends Trophy {
     const rankConditions = [
       new RankCondition(
         RANK.SECRET,
-        "S Rank Hacker",
+        "Challenger",
         1,
       ),
     ];

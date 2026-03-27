@@ -2,8 +2,6 @@ import { soxa } from "../../deps.ts";
 import {
   EServiceKindError,
   GithubError,
-  GithubErrorResponse,
-  GithubExceedError,
   QueryDefaultResponse,
   ServiceError,
 } from "../Types/index.ts";
@@ -52,13 +50,13 @@ function handleError(
   }
 
   if (isRateLimitExceeded) {
-    throw new ServiceError(
+    return new ServiceError(
       "Rate limit exceeded",
       EServiceKindError.RATE_LIMIT,
     );
   }
 
-  throw new ServiceError(
+  return new ServiceError(
     "unknown error",
     EServiceKindError.NOT_FOUND,
   );

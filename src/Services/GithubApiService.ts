@@ -26,6 +26,17 @@ export const TOKENS = [
   Deno.env.get("GITHUB_TOKEN2"),
 ];
 
+export const normalizeTokens = (
+  tokens: Array<string | undefined>,
+): Array<string> => {
+  const configuredTokens = tokens
+    .filter((token): token is string => token !== undefined)
+    .map((token) => token.trim())
+    .filter((token) => token.length > 0);
+
+  return configuredTokens.length > 0 ? configuredTokens : [""];
+};
+
 export class GithubApiService extends GithubRepository {
   async requestUserAll(
     username: string,
@@ -82,19 +93,20 @@ export class GithubApiService extends GithubRepository {
     variables: { [key: string]: string },
   ) {
     try {
+      const retryTokens = normalizeTokens(TOKENS);
       const retry = new Retry(
-        TOKENS.length,
+        retryTokens.length,
         CONSTANTS.DEFAULT_GITHUB_RETRY_DELAY,
       );
       return await retry.fetch<Promise<T>>(async ({ attempt }) => {
         return await requestGithubData(
           query,
           variables,
-          TOKENS[attempt],
+          retryTokens[attempt],
         );
       });
-    } catch (error) {
-      if (error.cause instanceof ServiceError) {
+    } catch (error: unknown) {
+      if (error instanceof Error && error.cause instanceof ServiceError) {
         Logger.error(error.cause.message);
         return error.cause;
       }

@@ -1,5 +1,3 @@
-import { ServiceError } from "../Types/index.ts";
-import { Logger } from "./Logger.ts";
 
 export type RetryCallbackProps = {
   attempt: number;
@@ -18,21 +16,31 @@ async function* createAsyncIterable<T>(
       const data = await callback({ attempt: i });
       yield data;
       return;
-    } catch (e) {
-      if (e instanceof ServiceError && isLastAttempt) {
-        yield e;
+    } catch (e: unknown) {
+      if (isLastAttempt) {
+        if (e instanceof Error) {
+          yield e;
+          return;
+        }
+        if (typeof e === "string") {
+          yield new Error(e);
+          return;
+        }
+        yield new Error("Retry callback failed with a non-Error value.");
         return;
       }
 
       yield null;
-      Logger.error(e);
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
   }
 }
 
 export class Retry {
-  constructor(private maxRetries = 2, private retryDelay = 1000) {}
+  constructor(
+    private readonly maxRetries = 2,
+    private readonly retryDelay = 1000,
+  ) {}
   async fetch<T = unknown>(
     callback: callbackType<T>,
   ) {

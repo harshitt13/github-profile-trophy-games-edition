@@ -7,15 +7,16 @@ export class Card {
   private width = 0;
   private height = 0;
   constructor(
-    private titles: Array<string>,
-    private ranks: Array<string>,
+    private readonly titles: Array<string>,
+    private readonly ranks: Array<string>,
+    private readonly iconTheme: string,
     private maxColumn: number,
-    private maxRow: number,
-    private panelSize: number,
-    private marginWidth: number,
-    private marginHeight: number,
-    private noBackground: boolean,
-    private noFrame: boolean,
+    private readonly maxRow: number,
+    private readonly panelSize: number,
+    private readonly marginWidth: number,
+    private readonly marginHeight: number,
+    private readonly noBackground: boolean,
+    private readonly noFrame: boolean,
   ) {
     this.width = panelSize * this.maxColumn +
       this.marginWidth * (this.maxColumn - 1);
@@ -28,7 +29,7 @@ export class Card {
 
     trophyList.filterByHidden();
 
-    if (this.titles.length != 0) {
+    if (this.titles.length !== 0) {
       const includeTitles = this.titles.filter((title) =>
         !title.startsWith("-")
       );
@@ -38,13 +39,13 @@ export class Card {
       trophyList.filterByExclusionTitles(this.titles);
     }
 
-    if (this.ranks.length != 0) {
+    if (this.ranks.length !== 0) {
       trophyList.filterByRanks(this.ranks);
     }
 
     trophyList.sortByRank();
 
-    if (this.maxColumn == -1) {
+    if (this.maxColumn === -1) {
       this.maxColumn = trophyList.length;
       this.width = this.panelSize * this.maxColumn +
         this.marginWidth * (this.maxColumn - 1);
@@ -92,6 +93,7 @@ export class Card {
             this.panelSize,
             this.noBackground,
             this.noFrame,
+            this.iconTheme,
           );
       },
       "",

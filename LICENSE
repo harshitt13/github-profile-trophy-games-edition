@@ -1,4 +1,13 @@
+MIT License
+
+## This Fork
+
+This is a fork of [github-profile-trophy](https://github.com/ryo-ma/github-profile-trophy) by [ryo-ma](https://github.com/ryo-ma).
+
+All enhancements, modifications, and improvements made in this fork are provided under the same MIT License terms as the original project.
+
 Copyright (c) 2020 ryo-ma
+Modifications and enhancements (c) 2026 Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -18,3 +27,9 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+---
+
+## Original Project
+
+The original [github-profile-trophy](https://github.com/ryo-ma/github-profile-trophy) project by [ryo-ma](https://github.com/ryo-ma) is released under the MIT License. We acknowledge and thank the original creator for their excellent work. To support the original project, consider sponsoring the creator: [GitHub Sponsors - ryo-ma](https://github.com/sponsors/ryo-ma)

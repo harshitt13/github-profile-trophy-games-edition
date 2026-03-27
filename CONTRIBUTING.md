@@ -1,5 +1,7 @@
 # Contribution Guide
 
+This project is a fork of [github-profile-trophy](https://github.com/ryo-ma/github-profile-trophy) by [ryo-ma](https://github.com/ryo-ma). We maintain improvements and enhancements while honoring the original creator's work.
+
 ## Environment
 
 - Deno >= v1.36.1
@@ -9,35 +11,63 @@
 
 ## Local Run
 
-Create `.env` file to project root directory, and write your GitHub token to the
-`.env` file. Please select the authority of `repo` when creating token.
+### Generate GitHub Tokens
+
+1. Go to GitHub **Settings** → **Developer settings** → **Personal access tokens** → **[Tokens (classic)](https://github.com/settings/tokens)**
+2. Click **Generate new token (classic)**
+3. Set the token name (e.g., "GitHub Trophy Token")
+4. Set expiration (90 days or No expiration recommended)
+5. Select scopes:
+   - ✅ `public_repo` - Access to public repositories
+   - ✅ `read:user` - Read user profile data
+6. Generate token and copy the value (don't lose it - you won't see it again!)
+7. Optionally create a second token for better rate limiting
+
+### Setup Local Environment
+
+Create `.env` file in project root directory with your GitHub tokens:
 
 ```properties
-GITHUB_TOKEN1=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-GITHUB_TOKEN2=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+PROFILE_USERNAME=your-github-username
+GITHUB_TOKEN1=your-first-token-here
+GITHUB_TOKEN2=your-second-token-here (optional)
 
 # if using GitHub Enterprise:
 # (this env var defaults to https://api.github.com/graphql)
 GITHUB_API=https://github.example.com/api/graphql
 ```
 
-Run local server.
+### Run Local Server
 
-```sh
-deno task start
-```
-
-You can enable the Redis if you want, but it's not mandatory.
+Using Docker Compose (recommended):
 
 ```sh
 docker compose up -d
 ```
 
-Rename `env-example` to `.env`, and change ENABLE_REDIS to true
+Then open your browser:
 
-Open localhost from your browser.
+```
+http://localhost:8080/?theme=lol
+```
 
-http://localhost:8080/?username=ryo-ma
+Or using Deno directly:
+
+```sh
+deno task start
+```
+
+**Note:** Redis is no longer used in this refactor.
+
+### Verify Your Setup
+
+Test the endpoint:
+
+```
+http://localhost:8080/?theme=lol&column=8&rank=master,diamond
+```
+
+Should see your GitHub trophies displayed with League of Legends themed icons.
 
 ## Editor config
 

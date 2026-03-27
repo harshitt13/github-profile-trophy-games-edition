@@ -5,5 +5,12 @@
     "format": "deno fmt",
     "lint": "deno lint",
     "test": "ENV_TYPE=test deno test --allow-env"
+  },
+  "lint": {
+    "rules": {
+      "exclude": [
+        "no-import-prefix"
+      ]
+    }
   }
 }

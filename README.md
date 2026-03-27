@@ -1,101 +1,125 @@
+<!-- markdownlint-disable MD033 MD041 MD045 MD040 -->
+
 <div align="center">
-  <img width="140" src="https://user-images.githubusercontent.com/6661165/91657958-61b4fd00-eb00-11ea-9def-dc7ef5367e34.png"  alt="GitHub Profile Trophy"/>
-  <h2 align="center">GitHub Profile Trophy</h2>
-  <p align="center">🏆 Add dynamically generated GitHub Stat Trophies on your README</p>
+  <img width="140" src="https://user-images.githubusercontent.com/6661165/91657958-61b4fd00-eb00-11ea-9def-dc7ef5367e34.png"  alt="GitHub Profile Trophy Games Edition"/>
+  <h2 align="center">GitHub Profile Trophy: Games Edition</h2>
+  <p align="center">🏆 Add dynamically generated GitHub Stat Trophies with League of Legends rank icons on your README</p>
+  <p align="center"><strong>A Fork of <a href="https://github.com/ryo-ma/github-profile-trophy">github-profile-trophy</a> by <a href="https://github.com/ryo-ma">ryo-ma</a></strong></p>
 </div>
 <div align="center">
 
-[![stargazers](https://img.shields.io/github/stars/ryo-ma/github-profile-trophy)](https://github.com/ryo-ma/github-profile-trophy/stargazers)
-[![forks](https://img.shields.io/github/forks/ryo-ma/github-profile-trophy)](https://github.com/ryo-ma/github-profile-trophy/network/members)
-[![issues](https://img.shields.io/github/issues/ryo-ma/github-profile-trophy)](https://github.com/ryo-ma/github-profile-trophy/issues)
-[![license](https://img.shields.io/github/license/ryo-ma/github-profile-trophy)](https://github.com/ryo-ma/github-profile-trophy/blob/master/LICENSE)
-[![share](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fryo-ma%2Fgithub-profile-trophy)](https://twitter.com/intent/tweet?text=Add%20dynamically%20generated%20GitHub%20Trophy%20on%20your%20readme%0D%0A&url=https%3A%2F%2Fgithub.com%2Fryo-ma%2Fgithub-profile-trophy)
+[![stargazers](https://img.shields.io/github/stars/harshitt13/github-profile-trophy-games-edition)](https://github.com/harshitt13/github-profile-trophy-games-edition/stargazers)
+[![forks](https://img.shields.io/github/forks/harshitt13/github-profile-trophy-games-edition)](https://github.com/harshitt13/github-profile-trophy-games-edition/network/members)
+[![issues](https://img.shields.io/github/issues/harshitt13/github-profile-trophy-games-edition)](https://github.com/harshitt13/github-profile-trophy-games-edition/issues)
+[![license](https://img.shields.io/github/license/harshitt13/github-profile-trophy-games-edition)](https://github.com/harshitt13/github-profile-trophy-games-edition/blob/main/LICENSE)
 
 </div>
-<p align="center">
-  You can use this service for free. I'm looking for sponsors to help us keep up with this service❤️
-</p>
-<div align="center">
-  <a href="https://github.com/sponsors/ryo-ma">
-    <img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=ff69b4" alt="Sponsor"/>
-  </a>
-</div>
-
-> ⚠️ **Notice from the Project Owner**
->
-> Hello everyone,\
-> I am the owner of this project.
->
-> Currently, due to the increase in users and traffic, the cost of maintaining
-> this service has become quite high, and it is becoming financially difficult
-> to sustain.\
-> As costs continue to rise, there is a possibility that the service may have to
-> be discontinued.\
-> We are now at a stage where monetization and financial support are essential.
->
-> Your support in the following ways would be greatly appreciated:
->
-> 1. Financial support: [GitHub Sponsors](https://github.com/sponsors/ryo-ma)
-> 2. Reducing server load through self-hosting (by forking on GitHub and
->    deploying to Vercel)
-> 3. Share your github-profile-trophy URL deployed to Vercel for load balancing
->    (Send email: saka_ro@yahoo.co.jp or Pull Request)
-
-# Load balancing endpoints
-
-These are endpoints provided by volunteers. Please use these in moderation.
-
-- [https://github-profile-trophy-liard-delta.vercel.app](https://github-profile-trophy-liard-delta.vercel.app/)
-  by [Adwitya](https://github.com/Adwitya)
-- [https://github-profile-trophy-fork-two.vercel.app](https://github-profile-trophy-fork-two.vercel.app)
-  by [hesreallyhim](https://github.com/hesreallyhim)
-- [https://github-profile-trophy-winning.vercel.app](https://github-profile-trophy-winning.vercel.app)
-  by [hongbo-wei](https://github.com/hongbo-wei)
-- [https://github-profile-trophy-kannan.vercel.app](https://github-profile-trophy-kannan.vercel.app)
-  by [kann4n](https://github.com/kann4n)
-- [https://trophy.ryglcloud.net](https://trophy.ryglcloud.net) by
-  [PracticalRyan](https://github.com/PracticalRyan)
-- [https://github-profile-trophy-tawny.vercel.app](https://github-profile-trophy-tawny.vercel.app)
-  by [vijaypurohit322](https://github.com/vijaypurohit322)
-- [https://github-profile-repo.vercel.app](https://github-profile-repo.vercel.app/))
-  by [HackyCoder0951](https://github.com/hackycoder0951)
-- [https://gh-trophy.cdnsoft.net](https://gh-trophy.cdnsoft.net) by
-  [cromatikap](https://github.com/cromatikap)
-- [https://trophygh.kolioaris.xyz](https://trophygh.kolioaris.xyz) by
-  [kolioaris](https://github.com/kolioaris)
-- [https://github-profile-trophy-orcin-eta.vercel.app](https://github-profile-trophy-orcin-eta.vercel.app/)
-  by [manupawick](https://github.com/manupawickramasinghe)
-- [https://github-profile-trophy-reiyua-mirror.vercel.app](https://github-profile-trophy-reiyua-mirror.vercel.app)
-  by [reiyua](https://github.com/reiyua)
 
 # Quick Start
 
-Add the following code to your readme. When pasting the code into your profile's
-readme, change the `?username=` value to your GitHub's username.
+This fork is personal-deploy first. Each user should deploy their own instance and lock it to their own username.
 
+## Deploy on Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fharshitt13%2Fgithub-profile-trophy-games-edition&env=PROFILE_USERNAME,GITHUB_TOKEN1,GITHUB_TOKEN2&envDescription=GitHub%20tokens%20and%20profile%20settings&project-name=github-profile-trophy&repository-name=github-profile-trophy)
+
+### Setup Instructions
+
+#### Step 1: Generate GitHub Tokens
+
+1. Go to GitHub **Settings** → **Developer settings** → **Personal access tokens** → **[Tokens (classic)](https://github.com/settings/tokens)**
+2. Click **Generate new token (classic)**
+3. Set the token name (e.g., "GitHub Trophy Token")
+4. Set expiration (e.g., 90 days or No expiration)
+5. Select scopes:
+   - ✅ `public_repo` - Access to public repositories
+   - ✅ `read:user` - Read user profile data
+6. Click **Generate token** and copy the token value
+7. Repeat steps 2-6 to create a second token (optional but recommended for rate limiting)
+
+#### Step 2: Deploy on Vercel
+
+1. Click the "Deploy with Vercel" button above
+2. Log in to your Vercel account (or create one)
+3. On the "Create Git Repository" screen:
+   - Choose your GitHub account
+   - Set repository name (e.g., `github-profile-trophy`)
+4. On the "Environment Variables" screen, fill in:
+   - **PROFILE_USERNAME**: Your GitHub username (e.g., `harshitt13`)
+   - **GITHUB_TOKEN1**: First token generated in Step 1
+   - **GITHUB_TOKEN2**: Second token (optional, for better rate limiting)
+5. Click **Deploy**
+6. Wait for deployment to complete (usually 1-2 minutes)
+7. Copy your Vercel deployment URL (e.g., `https://github-profile-trophy-USERNAME.vercel.app`)
+
+#### Step 3: Use Your Deployment
+
+```markdown
+[![trophy](https://YOUR-DEPLOYMENT.vercel.app/?theme=lol)](https://github.com/ryo-ma/github-profile-trophy)
 ```
-[![trophy](https://github-profile-trophy.vercel.app/?username=ryo-ma)](https://github.com/ryo-ma/github-profile-trophy)
+
+Replace `YOUR-DEPLOYMENT` with your Vercel URL. Example:
+
+```markdown
+[![trophy](https://github-profile-trophy-harshitt13.vercel.app/?theme=lol)](https://github.com/ryo-ma/github-profile-trophy)
 ```
 
 <p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=ryo-ma&column=8&rank=SSS,SS,S,AAA,AA,A,B,C" />
+  <img src="https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&column=8&rank=challenger,grandmaster,master,diamond,platinum,gold,silver,bronze" />
 </p>
 
-## Use theme
+This server rejects requests for usernames different from `PROFILE_USERNAME`.
 
-Add optional parameter of the theme.
+#### Available Query Parameters
 
+- `theme=lol` - Apply League of Legends themed icons (default)
+- `column=6` - Max number of columns (default: 6)
+- `row=3` - Max number of rows (default: 3)
+- `rank=master,diamond` - Filter by specific ranks
+- `title=Stars,Followers` - Filter by specific trophy titles
+- `no-bg` - Transparent background
+- `no-frame` - Hide trophy frames
+
+## Theme
+
+This fork uses **League of Legends themed rank icons** to display your GitHub achievements.
+
+The trophy system uses RiotGames League of Legends rank icons:
+- **Iron** - Starting rank (?)
+- **Bronze** - Entry level (C tier)
+- **Silver** - Good progress (B tier)
+- **Gold** - Strong performer (A tier)
+- **Platinum** - Very good (AA tier)
+- **Diamond** - Elite player (AAA tier)
+- **Master** - Top tier (S tier)
+- **Grandmaster** - Master level (SS tier)
+- **Challenger** - Peak rank (SSS & SECRET tiers)
+
+```markdown
+[![trophy](https://YOUR-DEPLOYMENT.vercel.app/?theme=lol)](https://github.com/ryo-ma/github-profile-trophy)
 ```
-[![trophy](https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=onedark)](https://github.com/ryo-ma/github-profile-trophy)
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/92327052-d99b9e00-f091-11ea-9a24-c7ec86982370.png">
-</p>
-
-**[More detail](#apply-theme)**
 
 # About Rank
+
+Rank emblems now use League of Legends icons and follow this order:
+`Iron < Bronze < Silver < Gold < Platinum < Diamond < Master < Grandmaster < Challenger`.
+
+Internal score tiers are still based on the original ranks:
+`C B A AA AAA S SS SSS SECRET`.
+
+Alias mapping used by `rank=` filter:
+
+| Alias       | Internal tier(s) |
+| ----------- | ---------------- |
+| iron        | UNKNOWN (`?`)    |
+| bronze      | C                |
+| silver      | B                |
+| gold        | A                |
+| platinum    | AA               |
+| diamond     | AAA              |
+| master      | S                |
+| grandmaster | SS               |
+| challenger  | SSS, SECRET      |
 
 Ranks are `SSS` `SS` `S` `AAA` `AA` `A` `B` `C` `UNKNOWN` `SECRET`.
 
@@ -109,16 +133,21 @@ Ranks are `SSS` `SS` `S` `AAA` `AA` `A` `B` `C` `UNKNOWN` `SECRET`.
 
 **NOTE: The `UNKNOWN` rank is denoted by `?`**
 
-## Secret Rank
+## Secret Trophies
 
-The acquisition condition is secret, but you can see this.
+There are **7 secret trophies** that unlock under special conditions:
 
-<p align="center">
-  <img width="110" src="https://github.com/user-attachments/assets/40461f38-a317-431c-93d2-a56c2e803cf3" />
-</p>
+| Trophy | Condition | Unlock Criteria |
+|--------|-----------|-------------------|
+| **All S Rank** | Challenger | All base trophies at S rank (All-Super-Rank) |
+| **Multi Language** | Challenger | Contributed in 10+ programming languages |
+| **Long Time User** | Challenger | Account active for 10+ years |
+| **Ancient User** | Challenger | Account created before 2010 |
+| **OG User** | Challenger | Account created before 2008 |
+| **Joined 2020** | Challenger | Joined GitHub in 2020 |
+| **Multiple Organizations** | Challenger | Member of 3+ organizations |
 
-There are only a few secret trophies. Therefore, if you come up with interesting
-conditions, I will consider adding a trophy. I am waiting for contributions.
+Secret trophies appear as rank "Challenger" (SSS tier) when unlocked. The achievement is hidden until the condition is met!
 
 # About Display details
 
@@ -144,441 +173,180 @@ conditions, I will consider adding a trophy. I am waiting for contributions.
 - [no-bg](#transparent-background)
 - [no-frame](#hide-frames)
 
-## Filter by titles
+## Filter by Titles
 
-You can filter the display by specifying the titles of trophy.
+You can filter trophy display by specifying achievement titles.
 
+**Available Trophy Categories:**
+- `Reviews` - Total review comments
+- `Experience` - Account age in days
+- `Stars` - Total starred repositories
+- `Commits` - Total commit count
+- `Followers` - Follower count
+- `Issues` - Total issues created
+- `PullRequest` - Total pull requests
+- `Repositories` - Total repositories
+- `MultiLanguage` - Contributed in multiple languages (secret)
+- `AllSuperRank` - All trophies at S rank (secret)
+- `LongTimeUser` - 10+ year account (secret)
+- `AncientUser` - Account before 2010 (secret)
+- `OGUser` - Account before 2008 (secret)
+- `Joined2020` - Joined in 2020 (secret)
+- `Collaborator` - Member of 3+ organizations (secret)
+
+**Examples:**
+
+Show only Followers trophy:
 ```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&title=Followers
-```
-
-<p align="center">
-  <img width="110" src="https://user-images.githubusercontent.com/6661165/92317141-80ebe700-f038-11ea-8501-4015bfbb2cf4.png">
-</p>
-
-If you want to specify multiple titles.
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&title=Stars,Followers
-```
-
-<p align="center">
-  <img width="220" src="https://github.com/user-attachments/assets/3b8a1c8b-afcd-49dc-ab18-a439d5c36a83">
-</p>
-
-You can also exclude the trophies you don't want to display.
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&title=-Stars,-Followers
-```
-
-## Filter by ranks
-
-You can filter the display by specifying the ranks.\
-`Available values: SECRET SSS SS S AAA AA A B C`
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&rank=S
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&title=Followers
 ```
 
-<p align="center">
-  <img width="110" src="https://user-images.githubusercontent.com/6661165/91642657-1cdd8780-ea68-11ea-994b-4568a55cd22a.png" />
-</p>
-
-If you want to specify multiple ranks.
-
+Show multiple trophies:
 ```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&rank=S,AAA
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&title=Stars,Followers,Commits
 ```
 
-<p align="center">
-  <img width="220" src="https://github.com/user-attachments/assets/0c2ffca8-4b03-4d46-b1d7-4e1eb6702f68">
-</p>
-
-You can also exclude ranks.
-
+Exclude specific trophies:
 ```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&rank=-C,-B
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&title=-Stars,-Followers
 ```
 
-**NOTE: Since `UNKNOWN` is denoted by `?`, in order to include or exclude it you
-will have to use `rank=?` and `rank=-?` respectively**
+## Filter by Ranks
+
+You can filter trophy display by rank tier.
+
+**Available Ranks:**
+- `c` or `bronze` - Bronze tier
+- `b` or `silver` - Silver tier
+- `a` or `gold` - Gold tier
+- `aa` or `platinum` - Platinum tier
+- `aaa` or `diamond` - Diamond tier
+- `s` or `master` - Master tier
+- `ss` or `grandmaster` - Grandmaster tier
+- `sss` or `challenger` - Challenger tier
+- `?` or `iron` - Unknown tier
+
+**Examples:**
+
+Show only Master rank trophies:
+```
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&rank=master
+```
+
+Show multiple ranks:
+```
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&rank=master,diamond,challenger
+```
+
+Exclude specific ranks:
+```
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&rank=-bronze,-silver
+```
+
+**NOTE:** Since `UNKNOWN` is denoted by `?`, use `rank=?` to include it or `rank=-?` to exclude it.
 
 ## Specify the maximum row & column size
 
-You can specify the maximum row and column size.\
-Trophy will be hidden if it exceeds the range of both row and column.
+You can customize the grid layout for trophy display.
 
-`Available value: number type`\
-`Default: column=6 row=3`
+Defaults: `column=6` and `row=3`
 
-Restrict only row
-
+**Restrict by row only:**
 ```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&row=2
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&row=2
 ```
 
-Restrict only column
-
+**Restrict by column only:**
 ```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&column=2
-```
-
-Restrict row & column
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&row=2&column=3
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&column=4
 ```
 
-<p align="center">
-  <img width="330" src="https://user-images.githubusercontent.com/6661165/91659474-c07f7400-eb0a-11ea-84f2-eb6b42547829.png">
-</p>
-
-Adaptive column
-
+**Restrict row and column:**
 ```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&column=-1
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&row=2&column=3
 ```
 
-You can set `column` to `-1` to adapt the width to the number of trophies, the
-parameter `row` will be ignored.
-
-## Apply theme
-
-Available themes.
-
-| theme                       |
-| --------------------------- |
-| [flat](#flat)               |
-| [onedark](#onedark)         |
-| [gruvbox](#gruvbox)         |
-| [dracula](#dracula)         |
-| [monokai](#monokai)         |
-| [chalk](#chalk)             |
-| [nord](#nord)               |
-| [alduin](#alduin)           |
-| [darkhub](#darkhub)         |
-| [juicyfresh](#juicyfresh)   |
-| [buddhism](#buddhism)       |
-| [oldie](#oldie)             |
-| [radical](#radical)         |
-| [onestar](#onestar)         |
-| [discord](#discord)         |
-| [algolia](#algolia)         |
-| [gitdimmed](#gitdimmed)     |
-| [tokyonight](#tokyonight)   |
-| [matrix](#matrix)           |
-| [apprentice](#apprentice)   |
-| [dark_dimmed](#dark_dimmed) |
-| [dark_lover](#dark_lover)   |
-| [kimbie_dark](#kimbie_dark) |
-| [aura](#aura)               |
-
-### flat
-
+**Adaptive width (auto-fit columns):**
 ```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=flat
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&column=-1
 ```
 
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/92325601-039b9300-f087-11ea-983a-fce8133549ee.png">
-</p>
+When `column=-1`, the width adapts to fit trophies, and the `row` parameter is ignored.
 
-### onedark
+## Theme Parameter
 
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=onedark
-```
+The `theme` parameter selects the game icon pack:
 
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/92327052-d99b9e00-f091-11ea-9a24-c7ec86982370.png">
-</p>
+- `theme=lol` - **League of Legends rank icons** (required)
 
-### gruvbox
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=gruvbox
+```text
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol
 ```
 
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/92315152-e9c56600-f01c-11ea-9536-1bfbb158cfcb.png">
-</p>
+**Note:** The theme parameter is required in this fork.
 
-### dracula
+## Planned Themes
 
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=dracula
-```
+We're constantly working on adding more gaming-themed rank icon sets! Currently supported:
 
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/92490273-c91f2b00-f22b-11ea-9481-b5daae4d7bc3.png">
-</p>
+- ✅ `lol` - League of Legends rank icons
 
-### monokai
+**Planned themes for future releases:**
+- 🎮 Valorant rank icons
+- 🎮 Dota 2 rank icons
+- 🎮 Overwatch rank tiers
+- 🎮 Apex Legends rank badges
+- 🎮 Counter-Strike rank emblems
 
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=monokai
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/93725426-2c289e80-fbea-11ea-96a4-f6490ccf2126.png">
-</p>
-
-### chalk
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=chalk
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/94294003-1de7d300-ff9a-11ea-91d1-60417a4d919b.png">
-</p>
-
-### nord
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=nord
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/94346857-7ab2be80-006a-11eb-9082-36d377ae2531.png">
-</p>
-
-### alduin
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=alduin
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/99085932-2a88bf00-260c-11eb-9b26-d2f125773831.png">
-</p>
-
-### darkhub
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=darkhub
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/102801126-249ab080-43f8-11eb-91c8-f56f94c35777.png">
-</p>
-
-### juicyfresh
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=juicyfresh
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/104810094-edbc8c80-5835-11eb-8c20-a76192a00728.png">
-</p>
-
-### buddhism
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=buddhism
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/113709167-2412f500-971d-11eb-9ee5-0ab292cf8b4c.png">
-</p>
-
-### oldie
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=oldie
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/113709581-a0a5d380-971d-11eb-8583-770dc4091ebf.png">
-</p>
-
-### radical
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=radical
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/116633521-adbc8800-a994-11eb-97c4-e45a32721491.png">
-</p>
-
-### onestar
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=onestar
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/122048400-2af46d00-ce1c-11eb-94e0-c2c6ddaf6819.png">
-</p>
-
-### discord
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=discord
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/122048628-7dce2480-ce1c-11eb-9792-1e600b384c4d.png">
-</p>
-
-### algolia
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=algolia
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/131685203-92a31101-2d93-4d18-b24a-d81a8bb012c5.png">
-</p>
-
-### gitdimmed
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=gitdimmed
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/131685406-799a864f-2691-4840-bb71-1db9c087a507.png">
-</p>
-
-### tokyonight
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=tokyonight
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/6661165/135482087-27764d6f-53b4-4c2a-8473-32431d12660c.png">
-</p>
-
-### matrix
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=matrix
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/31789752/141647414-15cfe279-af12-4746-a886-f494c25c096d.png">
-</p>
-
-### apprentice
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=apprentice
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/31789752/144701036-285cdd4b-d687-4ddc-95c2-7ccae9e25a1f.png">
-</p>
-
-### dark_dimmed
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=dark_dimmed
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/31789752/147340893-655b9fa5-138f-4f29-91ec-2a17c93822d1.png">
-</p>
-
-### dark_lover
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=dark_lover
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/31789752/152659041-de5b23cb-1be8-4e6b-b07b-726127ab8c3a.png">
-</p>
-
-### kimbie_dark
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=kimbie_dark
-```
-
-<p align="center">
-  <img width="660" src="https://user-images.githubusercontent.com/8161064/288417332-408705a4-ae9c-47fe-af1a-9fb08555f526.png">
-</p>
-
-### aura
-
-```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&theme=aura
-```
-
-<p align="center">
-  <img width="660" src="https://github.com/user-attachments/assets/18a2266c-9a88-4882-940d-162c0c4d36e0">
-</p>
+If you have suggestions for other game rank icons or themes, feel free to open an issue or contribute! Check [CONTRIBUTING.md](./CONTRIBUTING.md) for more details.
 
 ## Margin Width
 
-You can put a margin in the width between trophies.\
-`Available value: number type`\
-`Default: margin-w=0`
+Add horizontal spacing between trophies.
+
+`Default: margin-w=0` (in pixels)
 
 ```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&margin-w=15
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&margin-w=15
 ```
-
-<p align="center">
-  <img width="735" src="https://user-images.githubusercontent.com/6661165/93668661-e0ca9f00-fac8-11ea-9bec-325454f49fb4.png">
-</p>
 
 ## Margin Height
 
-You can put a margin in the height between trophies.\
-`Available value: number type`\
-`Default: margin-h=0`
+Add vertical spacing between trophies.
+
+`Default: margin-h=0` (in pixels)
 
 ```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&margin-h=15
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&margin-h=15
 ```
 
-<p align="center">
-  <img width="110" height="330" src="https://github.com/user-attachments/assets/233dee5b-4491-46cc-884a-39d0aa928752">
-</p>
+## Example Layout
 
-## Example layout
+Combine multiple parameters for custom layouts:
 
 ```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&column=3&margin-w=15&margin-h=15
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&column=3&margin-w=15&margin-h=15&no-bg=true
 ```
 
-<p align="center">
-  <img width="360" src="https://user-images.githubusercontent.com/6661165/93668677-ff309a80-fac8-11ea-8ae3-3e3e8adbef39.png">
-</p>
+## Transparent Background
 
-## Transparent background
+Remove the background from trophy cards.
 
-You can turn the background transparent.\
-`Available value: boolean type (true or false)`\
 `Default: no-bg=false`
 
 ```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&no-bg=true
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&no-bg=true
 ```
 
-<p align="center">
-  <img width="969" src="https://github.com/user-attachments/assets/32d3b63b-7845-42cb-b71c-31abaa673bcb">
-</p>
+## Hide Frames
 
-## Hide frames
+Remove the decorative frames around each trophy.
 
-You can hide the frames around the trophies.\
-`Available value: boolean type (true or false)`\
 `Default: no-frame=false`
 
 ```
-https://github-profile-trophy.vercel.app/?username=ryo-ma&no-frame=true
+https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&no-frame=true
 ```
-
-<p align="center">
-  <img width="936" src="https://github.com/user-attachments/assets/54de15a3-d907-4a50-8117-170aae74d1cd">
-</p>
 
 ## Generate an svg file localy
 
@@ -616,47 +384,3 @@ Check [CONTRIBUTING.md](./CONTRIBUTING.md) for more details.
 
 This product is licensed under the
 [MIT License](https://github.com/ryo-ma/github-profile-trophy/blob/master/LICENSE).
-
-# 🙏 Sponsors
-
-Thank you so much to all the amazing sponsors who support this project! Your
-contributions help keep development going and make this work possible.
-
-## 💖 Monthly Sponsors
-
-- [@Leay15](https://github.com/Leay15) - $10 / month
-- [@hesreallyhim](https://github.com/hesreallyhim) - $10 / month
-- [@pmsosa](https://github.com/pmsosa) — $10 / month
-- [@chenfeng-huang](https://github.com/chenfeng-huang) — $10 / month
-- [@holly-hacker](https://github.com/holly-hacker) — $2 / month
-- [@skillerious](https://github.com/skillerious) — $2 / month (since Aug
-  17, 2024)
-- [@LudovicGardy](https://github.com/LudovicGardy) — $10 / month (since Aug
-  15, 2024)
-- [@alexcastrodev](https://github.com/alexcastrodev) — $10 / month (since Oct
-  13, 2023, previously $50 / month)
-- [@great-work-told-is](https://github.com/great-work-told-is) — $10 / month
-  (since Apr 12, 2023)
-- [@Ilithy](https://github.com/Ilithy) — $5 / month (since Jul 21, 2022)
-- [@weakish](https://github.com/weakish) — $2 / month (since Jan 22, 2022)
-- [@Kazuhito00](https://github.com/Kazuhito00) — $2 / month (since Jan 19, 2022)
-- [@KATO-Hiro](https://github.com/KATO-Hiro) — $2 / month (since Jan 5, 2022)
-- [@batazor](https://github.com/batazor) — $2 / month (since Oct 28, 2021)
-- [@port19x](https://github.com/port19x) — $2 / month (since Jan 27, 2022)
-
-## 🎁 One-Time Sponsors
-
-- [@pronoym99](https://github.com/pronoym99) - $20 (Feb 8, 2026)
-- [@hesreallyhim](https://github.com/hesreallyhim) - $100 (Jan 11, 2026)
-- [@Seo-4d696b75](https://github.com/Seo-4d696b75) — $10 (Jan 4, 2026)
-- [@massif-01](https://github.com/massif-01) — $5 (December 17, 2025)
-- [@tapegram](https://github.com/tapegram) — $20 (December 6, 2025)
-- [@WilliamCorotan](https://github.com/WilliamCorotan) — $5 (November 5, 2025)
-- [@arnabnandy7](https://github.com/arnabnandy7) — $10 (Oct 3, 2025)
-- [@JoqarSabon](https://github.com/JoqarSabon) — $5 (May 24, 2024)
-- [@syaghoubi00](https://github.com/syaghoubi00) — $5 (Jan 28, 2024)
-- [@pylapp](https://github.com/pylapp) — $20 (Jan 15, 2024)
-- [@Dobefu](https://github.com/Dobefu) — $10 (Dec 22, 2024)
-- [@michele-lorenzoni](https://github.com/michele-lorenzoni) — $10 (Nov
-  26, 2024)
-- [@skillerious](https://github.com/skillerious) — $10 (Aug 17, 2024)

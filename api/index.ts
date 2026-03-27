@@ -1,24 +1,43 @@
 import { Card } from "../src/card.ts";
 import { CONSTANTS, parseParams } from "../src/utils.ts";
-import { COLORS, Theme } from "../src/theme.ts";
-import { Error400 } from "../src/error_page.ts";
-import "https://deno.land/x/dotenv@v0.5.0/load.ts";
-import { staticRenderRegeneration } from "../src/StaticRenderRegeneration/index.ts";
 import { GithubRepositoryService } from "../src/Repository/GithubRepository.ts";
 import { GithubApiService } from "../src/Services/GithubApiService.ts";
 import { ServiceError } from "../src/Types/index.ts";
 import { ErrorPage } from "../src/pages/Error.ts";
-import { cacheProvider } from "../src/config/cache.ts";
+
+declare const Deno: {
+  env: {
+    get(key: string): string | undefined;
+  };
+};
 
 const serviceProvider = new GithubApiService();
 const client = new GithubRepositoryService(serviceProvider).repository;
 
-// Build cache control header with optimized caching strategy
+const DEFAULT_THEME = {
+  BACKGROUND: "#0f1318",
+  TITLE: "#e9eef7",
+  TEXT: "#a5b1c3",
+  NEXT_RANK_BAR: "#6fb2ff",
+  CARD_BORDER: "#2b3443",
+  CARD_HIGHLIGHT: "#3f4c61",
+};
+
+const LIMITS = {
+  MIN_ROW: 1,
+  MAX_ROW: 10,
+  MIN_COLUMN: 1,
+  MAX_COLUMN: 12,
+  MIN_MARGIN: 0,
+  MAX_MARGIN: 50,
+  MAX_FILTER_ITEMS: 64,
+  MAX_FILTER_ITEM_LENGTH: 64,
+};
+
 const cacheControlHeader = [
   "public",
-  `max-age=${CONSTANTS.CACHE_MAX_AGE}`,
-  `s-maxage=${CONSTANTS.CDN_CACHE_MAX_AGE}`,
-  `stale-while-revalidate=${CONSTANTS.STALE_WHILE_REVALIDATE}`,
+  "max-age=120",
+  "s-maxage=120",
 ].join(", ");
 
 const defaultHeaders = new Headers(
@@ -28,87 +47,120 @@ const defaultHeaders = new Headers(
   },
 );
 
-export default (request: Request) =>
-  staticRenderRegeneration(request, {
-    revalidate: CONSTANTS.REVALIDATE_TIME,
-    headers: defaultHeaders,
-  }, function (req: Request) {
-    return app(req);
+export default function requestHandler(request: Request) {
+  return app(request);
+}
+
+const getConfiguredUsername = (): string => {
+  return (
+    Deno.env.get("PROFILE_USERNAME")?.trim() ||
+    Deno.env.get("GITHUB_USERNAME")?.trim() ||
+    ""
+  );
+};
+
+const hasConfiguredToken = (): boolean => {
+  return (
+    (Deno.env.get("GITHUB_TOKEN1")?.trim().length ?? 0) > 0 ||
+    (Deno.env.get("GITHUB_TOKEN2")?.trim().length ?? 0) > 0
+  );
+};
+
+const clampInteger = (value: number, min: number, max: number): number => {
+  return Math.min(max, Math.max(min, Math.trunc(value)));
+};
+
+const resolveColumn = (value: number): number => {
+  return value === -1
+    ? -1
+    : clampInteger(value, LIMITS.MIN_COLUMN, LIMITS.MAX_COLUMN);
+};
+
+const parseListQueryValues = (
+  params: URLSearchParams,
+  key: string,
+): Array<string> => {
+  return params.getAll(key)
+    .flatMap((r) => r.split(","))
+    .map((r) => r.trim())
+    .filter((r) => r.length > 0 && r.length <= LIMITS.MAX_FILTER_ITEM_LENGTH)
+    .slice(0, LIMITS.MAX_FILTER_ITEMS);
+};
+
+const htmlResponse = (status: number, html: string): Response => {
+  return new Response(html, {
+    status,
+    headers: new Headers({
+      "Content-Type": "text/html",
+      "Cache-Control": cacheControlHeader,
+    }),
   });
+};
 
 async function app(req: Request): Promise<Response> {
-  const params = parseParams(req);
-  const username = params.get("username");
-  const row = params.getNumberValue("row", CONSTANTS.DEFAULT_MAX_ROW);
-  const column = params.getNumberValue("column", CONSTANTS.DEFAULT_MAX_COLUMN);
-  const themeParam: string = params.getStringValue("theme", "default");
-  if (username === null) {
-    const [base] = req.url.split("?");
-    const error = new Error400(
-      `<section>
-      <div>
-        <h2>"username" is a required query parameter</h2>
-        <p>The URL should look like
-        <div>
-          <p id="base-show">${base}?username=USERNAME</p>
-          <button>Copy Base Url</button>
-          <span id="temporary-span"></span>
-        </div>where
-        <code>USERNAME</code> is <em>your GitHub username.</em>
-      </div>
-      <div>
-        <h2>You can use this form: </h2>
-        <p>Enter your username and click "Get Trophies"</p>
-        <form action="${base}" method="get">
-          <label for="username">GitHub Username</label>
-          <input type="text" name="username" id="username" placeholder="Ex. gabriel-logan" required>
-          <label for="theme">Theme (Optional)</label>
-          <input type="text" name="theme" id="theme" placeholder="Ex. onedark" value="light">
-          <text>
-            See all the available themes
-            <a href="https://github.com/ryo-ma/github-profile-trophy?tab=readme-ov-file#apply-theme" target="_blank">here</a>
-          </text>
-          <br>
-          <button type="submit">Get Trophies</button>
-        </form>
-      </div>
-      <script>
-        const button = document.querySelector("button");
-        const input = document.querySelector("input");
-        const temporarySpan = document.querySelector("#temporary-span");
+  if (req.method !== "GET") {
+    return htmlResponse(405, "<h2>Method Not Allowed.</h2><p>Use GET.</p>");
+  }
 
-        button.addEventListener("click", () => {
-          navigator.clipboard.writeText(document.querySelector("#base-show").textContent);
-          temporarySpan.textContent = "Copied!";
-          setTimeout(() => {
-            temporarySpan.textContent = "";
-          }, 1500);
-        });
-      </script>
-    </section>`,
-    );
-    return new Response(
-      error.render(),
-      {
-        status: error.status,
-        headers: new Headers({
-          "Content-Type": "text/html",
-          "Cache-Control": cacheControlHeader,
-        }),
-      },
+  const params = parseParams(req);
+  const configuredUsername = getConfiguredUsername();
+  if (configuredUsername.length === 0) {
+    return htmlResponse(
+      500,
+      "<h2>Missing PROFILE_USERNAME or GITHUB_USERNAME in environment variables.</h2><p>Set your own GitHub username to lock this deployment.</p>",
     );
   }
-  let theme: Theme = COLORS.default;
-  if (Object.keys(COLORS).includes(themeParam)) {
-    theme = COLORS[themeParam];
+  if (!hasConfiguredToken()) {
+    return htmlResponse(
+      500,
+      "<h2>Missing GITHUB_TOKEN1/GITHUB_TOKEN2 in environment variables.</h2><p>Create a personal token and set it in your deployment environment.</p>",
+    );
   }
-  const marginWidth = params.getNumberValue(
-    "margin-w",
-    CONSTANTS.DEFAULT_MARGIN_W,
+
+  const requestedUsername = params.getStringValue("username", configuredUsername)
+    .trim();
+  if (requestedUsername.length === 0) {
+    return htmlResponse(400, "<h2>Username is required.</h2>");
+  }
+  if (requestedUsername.toLowerCase() !== configuredUsername.toLowerCase()) {
+    return htmlResponse(
+      403,
+      `<h2>Forbidden</h2><p>This deployment is locked to @${configuredUsername}.</p>`,
+    );
+  }
+
+  const row = clampInteger(
+    params.getNumberValue("row", CONSTANTS.DEFAULT_MAX_ROW),
+    LIMITS.MIN_ROW,
+    LIMITS.MAX_ROW,
   );
-  const paddingHeight = params.getNumberValue(
-    "margin-h",
-    CONSTANTS.DEFAULT_MARGIN_H,
+  const column = resolveColumn(
+    params.getNumberValue("column", CONSTANTS.DEFAULT_MAX_COLUMN),
+  );
+  const rawTheme = params.get("theme")?.trim() ?? "";
+  if (rawTheme.length === 0) {
+    return htmlResponse(
+      400,
+      "<h2>Theme is required.</h2><p>Use ?theme=lol for this deployment.</p>",
+    );
+  }
+  const iconTheme = rawTheme;
+  const theme = DEFAULT_THEME;
+  const marginWidth = clampInteger(
+    params.getNumberValue(
+      "margin-w",
+      CONSTANTS.DEFAULT_MARGIN_W,
+    ),
+    LIMITS.MIN_MARGIN,
+    LIMITS.MAX_MARGIN,
+  );
+  const marginHeight = clampInteger(
+    params.getNumberValue(
+      "margin-h",
+      CONSTANTS.DEFAULT_MARGIN_H,
+    ),
+    LIMITS.MIN_MARGIN,
+    LIMITS.MAX_MARGIN,
   );
   const noBackground = params.getBooleanValue(
     "no-bg",
@@ -118,45 +170,34 @@ async function app(req: Request): Promise<Response> {
     "no-frame",
     CONSTANTS.DEFAULT_NO_FRAME,
   );
-  const titles: Array<string> = params.getAll("title").flatMap((r) =>
-    r.split(",")
-  ).map((r) => r.trim());
-  const ranks: Array<string> = params.getAll("rank").flatMap((r) =>
-    r.split(",")
-  ).map((r) => r.trim());
+  const titles = parseListQueryValues(params, "title");
+  const ranks = parseListQueryValues(params, "rank");
 
-  const userKeyCache = ["v1", username].join("-");
-  const userInfoCached = await cacheProvider.get(userKeyCache) || "{}";
-  let userInfo = JSON.parse(userInfoCached);
-  const hasCache = !!Object.keys(userInfo).length;
-
-  if (!hasCache) {
-    const userResponseInfo = await client.requestUserInfo(username);
-    if (userResponseInfo instanceof ServiceError) {
-      return new Response(
-        ErrorPage({ error: userResponseInfo }).render(),
-        {
-          status: userResponseInfo.code,
-          headers: new Headers({
-            "Content-Type": "text/html",
-            "Cache-Control": cacheControlHeader,
-          }),
-        },
-      );
-    }
-    userInfo = userResponseInfo;
-    await cacheProvider.set(userKeyCache, JSON.stringify(userInfo));
+  const userInfo = await client.requestUserInfo(configuredUsername);
+  if (userInfo instanceof ServiceError) {
+    return new Response(
+      ErrorPage({ error: userInfo }).render(),
+      {
+        status: userInfo.code,
+        headers: new Headers({
+          "Content-Type": "text/html",
+          "Cache-Control": cacheControlHeader,
+        }),
+      },
+    );
   }
+
   // Success Response
   return new Response(
     new Card(
       titles,
       ranks,
+      iconTheme,
       column,
       row,
       CONSTANTS.DEFAULT_PANEL_SIZE,
       marginWidth,
-      paddingHeight,
+      marginHeight,
       noBackground,
       noFrame,
     ).render(userInfo, theme),

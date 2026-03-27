@@ -12,8 +12,8 @@ export class CustomURLSearchParams extends URLSearchParams {
     if (super.has(key)) {
       const param = super.get(key);
       if (param !== null) {
-        const parsedValue = parseInt(param);
-        if (isNaN(parsedValue)) {
+        const parsedValue = Number.parseInt(param);
+        if (Number.isNaN(parsedValue)) {
           return defaultValue;
         }
         return parsedValue;
@@ -31,11 +31,16 @@ export class CustomURLSearchParams extends URLSearchParams {
 }
 
 export function parseParams(req: Request): CustomURLSearchParams {
-  const splittedURL = req.url.split("?");
-  if (splittedURL.length < 2) {
-    return new CustomURLSearchParams();
+  try {
+    const parsedUrl = new URL(req.url);
+    return new CustomURLSearchParams(parsedUrl.search);
+  } catch {
+    const splittedURL = req.url.split("?");
+    if (splittedURL.length < 2) {
+      return new CustomURLSearchParams();
+    }
+    return new CustomURLSearchParams(splittedURL[1]);
   }
-  return new CustomURLSearchParams(splittedURL[1]);
 }
 
 export function abridgeScore(score: number): string {
@@ -48,12 +53,7 @@ export function abridgeScore(score: number): string {
   return (Math.sign(score) * Math.abs(score)).toString() + "pt";
 }
 
-const HOUR_IN_MILLISECONDS = 60 * 60 * 1000;
-
 export const CONSTANTS = {
-  CACHE_MAX_AGE: 18800,
-  CDN_CACHE_MAX_AGE: 28800, // 8 hours for CDN edge cache
-  STALE_WHILE_REVALIDATE: 86400, // 24 hours - serve stale while revalidating
   DEFAULT_PANEL_SIZE: 110,
   DEFAULT_MAX_COLUMN: 8,
   DEFAULT_MAX_ROW: 3,
@@ -63,8 +63,6 @@ export const CONSTANTS = {
   DEFAULT_NO_FRAME: false,
   DEFAULT_GITHUB_API: "https://api.github.com/graphql",
   DEFAULT_GITHUB_RETRY_DELAY: 500,
-  REVALIDATE_TIME: HOUR_IN_MILLISECONDS * 6,
-  REDIS_TTL: HOUR_IN_MILLISECONDS * 4,
 };
 
 export enum RANK {
@@ -81,3 +79,31 @@ export enum RANK {
 }
 
 export const RANK_ORDER = Object.values(RANK);
+
+const RANK_FILTER_ALIASES: Record<string, Array<RANK>> = {
+  "?": [RANK.UNKNOWN],
+  unknown: [RANK.UNKNOWN],
+  secret: [RANK.SECRET],
+  sss: [RANK.SSS],
+  ss: [RANK.SS],
+  s: [RANK.S],
+  aaa: [RANK.AAA],
+  aa: [RANK.AA],
+  a: [RANK.A],
+  b: [RANK.B],
+  c: [RANK.C],
+  iron: [RANK.UNKNOWN],
+  bronze: [RANK.C],
+  silver: [RANK.B],
+  gold: [RANK.A],
+  platinum: [RANK.AA],
+  diamond: [RANK.AAA],
+  master: [RANK.S],
+  grandmaster: [RANK.SS],
+  challenger: [RANK.SSS, RANK.SECRET],
+};
+
+export function resolveRankFilterAliases(rankValue: string): Array<RANK> {
+  const normalized = rankValue.trim().toLowerCase();
+  return RANK_FILTER_ALIASES[normalized] ?? [];
+}

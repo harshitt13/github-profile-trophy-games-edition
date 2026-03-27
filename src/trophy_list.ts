@@ -17,13 +17,12 @@ import {
   Trophy,
 } from "./trophy.ts";
 import { UserInfo } from "./user_info.ts";
-import { RANK, RANK_ORDER } from "./utils.ts";
+import { RANK, RANK_ORDER, resolveRankFilterAliases } from "./utils.ts";
 
 export class TrophyList {
   private trophies = new Array<Trophy>();
   constructor(userInfo: UserInfo) {
-    // Base trophies
-    this.trophies.push(
+    this.trophies = [
       new TotalStarTrophy(userInfo.totalStargazers),
       new TotalCommitTrophy(userInfo.totalCommits),
       new TotalFollowerTrophy(userInfo.totalFollowers),
@@ -31,9 +30,6 @@ export class TrophyList {
       new TotalPullRequestTrophy(userInfo.totalPullRequests),
       new TotalRepositoryTrophy(userInfo.totalRepositories),
       new TotalReviewsTrophy(userInfo.totalReviews),
-    );
-    // Secret trophies
-    this.trophies.push(
       new AllSuperRankTrophy(this.isAllSRank),
       new MultipleLangTrophy(userInfo.languageCount),
       new LongTimeAccountTrophy(userInfo.durationYear),
@@ -42,7 +38,7 @@ export class TrophyList {
       new Joined2020Trophy(userInfo.joined2020),
       new MultipleOrganizationsTrophy(userInfo.totalOrganizations),
       new AccountDurationTrophy(userInfo.durationDays),
-    );
+    ];
   }
   get length() {
     return this.trophies.length;
@@ -51,7 +47,7 @@ export class TrophyList {
     return this.trophies;
   }
   private get isAllSRank() {
-    return this.trophies.every((trophy) => trophy.rank.slice(0, 1) == RANK.S)
+    return this.trophies.every((trophy) => trophy.rank.slice(0, 1) === RANK.S)
       ? 1
       : 0;
   }
@@ -66,14 +62,20 @@ export class TrophyList {
     });
   }
   filterByRanks(ranks: Array<string>) {
-    if (ranks.filter((rank) => rank.includes("-")).length !== 0) {
+    if (ranks.some((rank) => rank.includes("-"))) {
+      const excludedRanks = new Set(ranks.flatMap((rank) =>
+        resolveRankFilterAliases(rank.substring(1))
+      ));
       this.trophies = this.trophies.filter((trophy) =>
-        !ranks.map((rank) => rank.substring(1)).includes(trophy.rank)
+        !excludedRanks.has(trophy.rank)
       );
       return;
     }
+    const includedRanks = new Set(ranks.flatMap((rank) =>
+      resolveRankFilterAliases(rank)
+    ));
     this.trophies = this.trophies.filter((trophy) =>
-      ranks.includes(trophy.rank)
+      includedRanks.has(trophy.rank)
     );
   }
   filterByExclusionTitles(titles: Array<string>) {
