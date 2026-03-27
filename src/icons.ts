@@ -77,30 +77,26 @@ const getRankIconDataUri = (rank: RANK, iconTheme: string): string | null => {
   }
 
   try {
-    // Try multiple path strategies for different environments
-    let fileUrl: URL | null = null;
-    
-    // Strategy 1: Relative from src/ (local development)
-    try {
-      fileUrl = new URL(`../${pack}/${iconFileName}`, import.meta.url);
-      Deno.readFileSync(fileUrl);
-    } catch {
-      // Strategy 2: Try from project root as file:// URL
-      const currentUrlStr = import.meta.url;
-      const paths = currentUrlStr.split("/");
-      // Find where the project root is
-      const srcIndex = paths.lastIndexOf("src");
-      if (srcIndex !== -1) {
-        const rootPath = paths.slice(0, srcIndex).join("/");
-        fileUrl = new URL(`${rootPath}/${pack}/${iconFileName}`);
+    // Prefer icons from public/ (Vercel + local), then fallback to legacy path.
+    const candidateFileUrls = [
+      new URL(`../public/${pack}/${iconFileName}`, import.meta.url),
+      new URL(`../${pack}/${iconFileName}`, import.meta.url),
+    ];
+
+    let iconBytes: Uint8Array | null = null;
+    for (const fileUrl of candidateFileUrls) {
+      try {
+        iconBytes = Deno.readFileSync(fileUrl);
+        break;
+      } catch {
+        // Try next candidate path.
       }
     }
-    
-    if (!fileUrl) {
+
+    if (iconBytes === null) {
       return null;
     }
-    
-    const iconBytes = Deno.readFileSync(fileUrl);
+
     const mimeType = detectImageMimeType(iconBytes);
     const dataUri = `data:${mimeType};base64,${toBase64(iconBytes)}`;
     iconDataUriCache.set(cacheKey, dataUri);
