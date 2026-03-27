@@ -67,6 +67,12 @@ const getRankIconFileByTheme = (rank: RANK, _iconTheme: string): string => {
   return LEAGUE_RANK_ICON_FILE_BY_RANK[rank];
 };
 
+const getRankIconPublicPath = (rank: RANK, iconTheme: string): string => {
+  const pack = getGamePackName(iconTheme);
+  const iconFileName = getRankIconFileByTheme(rank, iconTheme);
+  return `/${pack}/${iconFileName}`;
+};
+
 const getRankIconDataUri = (rank: RANK, iconTheme: string): string | null => {
   const pack = getGamePackName(iconTheme);
   const iconFileName = getRankIconFileByTheme(rank, iconTheme);
@@ -145,13 +151,8 @@ export const getTrophyIcon = (
   iconTheme = "lol",
 ) => {
   const rankIcon = getRankIconDataUri(rank, iconTheme);
-  if (rankIcon === null) {
-    return `
-    <svg x="25" y="22" width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-      <text x="50%" y="55%" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-size="32" fill="#e9eef7">?</text>
-    </svg>
-    `;
-  }
+  const fallbackIconPath = getRankIconPublicPath(rank, iconTheme);
+  const iconHref = rankIcon ?? fallbackIconPath;
 
   return `
   <svg x="25" y="22" width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
@@ -162,7 +163,7 @@ export const getTrophyIcon = (
       height="60"
       opacity="1"
       preserveAspectRatio="xMidYMid meet"
-      href="${rankIcon}"
+      href="${iconHref}"
     />
   </svg>
   `;
