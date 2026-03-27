@@ -1,5 +1,6 @@
 {
   "public": true,
+  "buildCommand": "echo 'Build complete'",
   "functions": {
     "api/**/*.[jt]s": {
       "runtime": "vercel-deno@3.1.1",
@@ -10,6 +11,17 @@
     {
       "source": "/(.*)",
       "destination": "/api/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/rank-icon-pack-league-of-legends/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ]
 }

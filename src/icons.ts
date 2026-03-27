@@ -77,13 +77,36 @@ const getRankIconDataUri = (rank: RANK, iconTheme: string): string | null => {
   }
 
   try {
-    const fileUrl = new URL(`../${pack}/${iconFileName}`, import.meta.url);
+    // Try multiple path strategies for different environments
+    let fileUrl: URL | null = null;
+    
+    // Strategy 1: Relative from src/ (local development)
+    try {
+      fileUrl = new URL(`../${pack}/${iconFileName}`, import.meta.url);
+      Deno.readFileSync(fileUrl);
+    } catch {
+      // Strategy 2: Try from project root as file:// URL
+      const currentUrlStr = import.meta.url;
+      const paths = currentUrlStr.split("/");
+      // Find where the project root is
+      const srcIndex = paths.lastIndexOf("src");
+      if (srcIndex !== -1) {
+        const rootPath = paths.slice(0, srcIndex).join("/");
+        fileUrl = new URL(`${rootPath}/${pack}/${iconFileName}`);
+      }
+    }
+    
+    if (!fileUrl) {
+      return null;
+    }
+    
     const iconBytes = Deno.readFileSync(fileUrl);
     const mimeType = detectImageMimeType(iconBytes);
     const dataUri = `data:${mimeType};base64,${toBase64(iconBytes)}`;
     iconDataUriCache.set(cacheKey, dataUri);
     return dataUri;
   } catch {
+    console.error(`Failed to load icon: ${pack}/${iconFileName}`);
     return null;
   }
 };
