@@ -11,7 +11,7 @@
 [![stargazers](https://img.shields.io/github/stars/harshitt13/github-profile-trophy-games-edition)](https://github.com/harshitt13/github-profile-trophy-games-edition/stargazers)
 [![forks](https://img.shields.io/github/forks/harshitt13/github-profile-trophy-games-edition)](https://github.com/harshitt13/github-profile-trophy-games-edition/network/members)
 [![issues](https://img.shields.io/github/issues/harshitt13/github-profile-trophy-games-edition)](https://github.com/harshitt13/github-profile-trophy-games-edition/issues)
-[![license](https://img.shields.io/github/license/harshitt13/github-profile-trophy-games-edition)](https://github.com/harshitt13/github-profile-trophy-games-edition/blob/main/LICENSE)
+[![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/harshitt13/github-profile-trophy-games-edition/blob/main/LICENSE)
 
 </div>
 
