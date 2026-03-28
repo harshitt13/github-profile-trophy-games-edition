@@ -349,32 +349,33 @@ Remove the decorative frames around each trophy.
 https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&no-frame=true
 ```
 
-## Generate an svg file localy
+## Generate an svg file locally
 
-Using the render_svg.ts script you can generate your trophys as an svg file
-given your username, (Enviroment Vars: See [env-example](env-example)).
+Using the render_svg.ts script you can generate your trophies as an svg file.
 
 Usage:
 
 ```bash
-deno run --allow-net --allow-env --allow-read --allow-write ./render_svg.ts USERNAME OUTPUT_DIR THEME
+deno run --allow-net --allow-env --allow-read --allow-write ./render_svg.ts USERNAME OUTPUT_DIR THEME API_URL
 ```
 
 ## Generate an svg inside Github CI (Workflow)
 
-Using the provided github action you can easly generate the trophy inside an
-github workflow. This eliminates the needs of an online service running but you
-have to manualy update rerun the action to update the file.
+Using the provided github action you can easily generate the trophy inside a
+github workflow. This eliminates the need for relying on a shared online service,
+but you have to set up an automated cron job or manually run it to update the file.
 
 Usage:
 
 ```yaml
-- name: Generate trophy
-  uses: Erik-Donath/github-profile-trophy@feature/generate-svg
+- name: Generate Game Trophies
+  uses: harshitt13/github-profile-trophy-games-edition@master
   with:
     username: your-username
+    api_url: https://your-deployment.vercel.app # The Vercel app you deployed
     output_path: trophy.svg
     token: ${{ secrets.GITHUB_TOKEN }}
+    theme: lol
 ```
 
 # Contribution Guide

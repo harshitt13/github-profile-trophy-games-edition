@@ -1,8 +1,17 @@
-name: Generate GitHub Profile Trophy SVG
-description: Run the local generator script to produce an SVG.
+name: "GitHub Profile Trophy - Games Edition"
+description: "Generate game rank badges for your GitHub profile using your self-hosted Vercel API to bypass rate limits."
+author: "harshitt13"
+
+branding:
+  icon: "award"
+  color: "purple"
+
 inputs:
   username:
     description: "GitHub username to generate the trophy for"
+    required: true
+  api_url:
+    description: "Your self-hosted Vercel URL (e.g., https://your-app.vercel.app)"
     required: true
   output_path:
     description: "Output path to write the SVG"
@@ -12,9 +21,10 @@ inputs:
     description: "PAT or token to use for GitHub API"
     required: true
   theme:
-    description: "Theme for the card"
+    description: "Theme for the card (e.g., lol)"
     required: false
     default: "default"
+
 runs:
   using: "composite"
   steps:
@@ -28,4 +38,4 @@ runs:
       env:
         GITHUB_TOKEN1: ${{ inputs.token }}
       run: |
-        deno run --allow-net --allow-env --allow-read --allow-write $GITHUB_ACTION_PATH/render_svg.ts "${{ inputs.username }}" "${{ inputs.output_path }}" "${{ inputs.theme }}"
+        deno run --allow-net --allow-env --allow-read --allow-write ${{ github.action_path }}/render_svg.ts "${{ inputs.username }}" "${{ inputs.output_path }}" "${{ inputs.theme }}" "${{ inputs.api_url }}"
