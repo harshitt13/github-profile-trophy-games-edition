@@ -359,24 +359,63 @@ Usage:
 deno run --allow-net --allow-env --allow-read --allow-write ./render_svg.ts USERNAME OUTPUT_DIR THEME API_URL
 ```
 
-## Generate an svg inside Github CI (Workflow)
+## Recommended Setup: Generate via GitHub Actions (Zero Rate Limits)
 
-Using the provided github action you can easily generate the trophy inside a
-github workflow. This eliminates the need for relying on a shared online service,
-but you have to set up an automated cron job or manually run it to update the file.
+While the direct Vercel link works great, if your profile gets a lot of traffic, it could drain your personal Vercel free tier limits.
 
-Usage:
+We highly recommend using this provided GitHub Action. It wakes up once a day, asks your Vercel app for the generated image, and saves it directly into your repository. This means your profile loads the image instantly from GitHub's static CDN, and your Vercel app only runs once every 24 hours!
+
+### Step 1: Deploy your Vercel API
+Follow the [Setup Instructions](#setup-instructions) above to deploy your own instance to Vercel and copy your new `api_url`.
+
+### Step 2: Create the Workflow File
+In your profile repository (the one named `username/username`), create a new file at `.github/workflows/update-trophies.yml` and paste the following code:
 
 ```yaml
-- name: Generate Game Trophies
-  uses: harshitt13/github-profile-trophy-games-edition@master
-  with:
-    username: your-username
-    api_url: https://your-deployment.vercel.app # The Vercel app you deployed
-    output_path: trophy.svg
-    token: ${{ secrets.GITHUB_TOKEN }}
-    theme: lol
+name: Update Game Trophies
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs automatically once a day at midnight UTC
+  workflow_dispatch: # Allows you to manually trigger the run
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to commit the SVG back to your repo
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Generate Game Trophies
+        uses: harshitt13/github-profile-trophy-games-edition@v1.0.0
+        with:
+          username: "YOUR_GITHUB_USERNAME"
+          api_url: "[https://your-deployment.vercel.app](https://your-deployment.vercel.app)" # Replace with your Vercel link
+          output_path: "trophy.svg"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          theme: "lol"
+
+      - name: Commit & Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update game rank trophies"
+          file_pattern: "trophy.svg"
 ```
+
+### Step 3: Display the Image in your README
+Because the Action saves the image directly into your repository, you do not need to link to Vercel in your Markdown.
+
+Update your README.md to point to the local file:
+
+```html
+<p align="center">
+  <img src="./trophy.svg" alt="My GitHub Game Trophies" />
+</p>
+```
+Note: After committing the workflow file, go to the Actions tab in your repository and manually trigger the "Update Game Trophies" workflow to generate your first image!
 
 # Contribution Guide
 
