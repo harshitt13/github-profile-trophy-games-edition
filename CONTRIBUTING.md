@@ -1,6 +1,9 @@
 # Contribution Guide
 
-This project is a fork of [github-profile-trophy](https://github.com/ryo-ma/github-profile-trophy) by [ryo-ma](https://github.com/ryo-ma). We maintain improvements and enhancements while honoring the original creator's work.
+This project is a fork of
+[github-profile-trophy](https://github.com/ryo-ma/github-profile-trophy) by
+[ryo-ma](https://github.com/ryo-ma). We maintain improvements and enhancements
+while honoring the original creator's work.
 
 ## Environment
 
@@ -13,7 +16,8 @@ This project is a fork of [github-profile-trophy](https://github.com/ryo-ma/gith
 
 ### Generate GitHub Tokens
 
-1. Go to GitHub **Settings** → **Developer settings** → **Personal access tokens** → **[Tokens (classic)](https://github.com/settings/tokens)**
+1. Go to GitHub **Settings** → **Developer settings** → **Personal access
+   tokens** → **[Tokens (classic)](https://github.com/settings/tokens)**
 2. Click **Generate new token (classic)**
 3. Set the token name (e.g., "GitHub Trophy Token")
 4. Set expiration (90 days or No expiration recommended)

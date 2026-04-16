@@ -20,6 +20,4 @@ const soxa = new ServiceProvider({
   baseURL,
 });
 
-export {
-  soxa,
-};
+export { soxa };

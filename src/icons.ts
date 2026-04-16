@@ -19,7 +19,6 @@ const LEAGUE_RANK_ICON_FILE_BY_RANK: Record<RANK, string> = {
   [RANK.UNKNOWN]: "7574-iron.png",
 };
 
-
 const getGamePackName = (iconTheme: string): string => {
   return GAME_ICON_PACKS[iconTheme.toLowerCase()] ?? GAME_ICON_PACKS.lol;
 };

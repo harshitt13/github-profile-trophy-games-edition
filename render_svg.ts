@@ -21,7 +21,7 @@ async function main() {
 
   // Clean the URL in case the user accidentally added a trailing slash
   const cleanApiUrl = apiUrl.replace(/\/$/, "");
-  
+
   // Construct the exact URL to fetch from your Vercel deployment
   const fetchUrl = `${cleanApiUrl}/?username=${username}&theme=${gameTheme}`;
 
@@ -31,7 +31,9 @@ async function main() {
     const response = await fetch(fetchUrl);
 
     if (!response.ok) {
-      console.error(`Failed to fetch SVG. Status: ${response.status} ${response.statusText}`);
+      console.error(
+        `Failed to fetch SVG. Status: ${response.status} ${response.statusText}`,
+      );
       const errorText = await response.text();
       console.error("Error details:", errorText);
       Deno.exit(2);
@@ -55,7 +57,6 @@ async function main() {
     // Save the SVG to the repository
     await Deno.writeTextFile(outputPath, svgData);
     console.log(`Successfully wrote SVG to ${outputPath}`);
-    
   } catch (error) {
     console.error("Network or execution error while fetching:", error);
     Deno.exit(4);

@@ -17,7 +17,8 @@
 
 # Quick Start
 
-This fork is personal-deploy first. Each user should deploy their own instance and lock it to their own username.
+This fork is personal-deploy first. Each user should deploy their own instance
+and lock it to their own username.
 
 ## Deploy on Vercel
 
@@ -27,7 +28,8 @@ This fork is personal-deploy first. Each user should deploy their own instance a
 
 #### Step 1: Generate GitHub Tokens
 
-1. Go to GitHub **Settings** → **Developer settings** → **Personal access tokens** → **[Tokens (classic)](https://github.com/settings/tokens)**
+1. Go to GitHub **Settings** → **Developer settings** → **Personal access
+   tokens** → **[Tokens (classic)](https://github.com/settings/tokens)**
 2. Click **Generate new token (classic)**
 3. Set the token name (e.g., "GitHub Trophy Token")
 4. Set expiration (e.g., 90 days or No expiration)
@@ -35,7 +37,8 @@ This fork is personal-deploy first. Each user should deploy their own instance a
    - ✅ `public_repo` - Access to public repositories
    - ✅ `read:user` - Read user profile data
 6. Click **Generate token** and copy the token value
-7. Repeat steps 2-6 to create a second token (optional but recommended for rate limiting)
+7. Repeat steps 2-6 to create a second token (optional but recommended for rate
+   limiting)
 
 #### Step 2: Deploy on Vercel
 
@@ -50,7 +53,8 @@ This fork is personal-deploy first. Each user should deploy their own instance a
    - **GITHUB_TOKEN2**: Second token (optional, for better rate limiting)
 5. Click **Deploy**
 6. Wait for deployment to complete (usually 1-2 minutes)
-7. Copy your Vercel deployment URL (e.g., `https://github-profile-trophy-USERNAME.vercel.app`)
+7. Copy your Vercel deployment URL (e.g.,
+   `https://github-profile-trophy-USERNAME.vercel.app`)
 
 #### Step 3: Use Your Deployment
 
@@ -82,9 +86,11 @@ This server rejects requests for usernames different from `PROFILE_USERNAME`.
 
 ## Theme
 
-This fork uses **League of Legends themed rank icons** to display your GitHub achievements.
+This fork uses **League of Legends themed rank icons** to display your GitHub
+achievements.
 
 The trophy system uses RiotGames League of Legends rank icons:
+
 - **Iron** - Starting rank (?)
 - **Bronze** - Entry level (C tier)
 - **Silver** - Good progress (B tier)
@@ -137,17 +143,18 @@ Ranks are `SSS` `SS` `S` `AAA` `AA` `A` `B` `C` `UNKNOWN` `SECRET`.
 
 There are **7 secret trophies** that unlock under special conditions:
 
-| Trophy | Condition | Unlock Criteria |
-|--------|-----------|-------------------|
-| **All S Rank** | Challenger | All base trophies at S rank (All-Super-Rank) |
-| **Multi Language** | Challenger | Contributed in 10+ programming languages |
-| **Long Time User** | Challenger | Account active for 10+ years |
-| **Ancient User** | Challenger | Account created before 2010 |
-| **OG User** | Challenger | Account created before 2008 |
-| **Joined 2020** | Challenger | Joined GitHub in 2020 |
-| **Multiple Organizations** | Challenger | Member of 3+ organizations |
+| Trophy                     | Condition  | Unlock Criteria                              |
+| -------------------------- | ---------- | -------------------------------------------- |
+| **All S Rank**             | Challenger | All base trophies at S rank (All-Super-Rank) |
+| **Multi Language**         | Challenger | Contributed in 10+ programming languages     |
+| **Long Time User**         | Challenger | Account active for 10+ years                 |
+| **Ancient User**           | Challenger | Account created before 2010                  |
+| **OG User**                | Challenger | Account created before 2008                  |
+| **Joined 2020**            | Challenger | Joined GitHub in 2020                        |
+| **Multiple Organizations** | Challenger | Member of 3+ organizations                   |
 
-Secret trophies appear as rank "Challenger" (SSS tier) when unlocked. The achievement is hidden until the condition is met!
+Secret trophies appear as rank "Challenger" (SSS tier) when unlocked. The
+achievement is hidden until the condition is met!
 
 # About Display details
 
@@ -178,6 +185,7 @@ Secret trophies appear as rank "Challenger" (SSS tier) when unlocked. The achiev
 You can filter trophy display by specifying achievement titles.
 
 **Available Trophy Categories:**
+
 - `Reviews` - Total review comments
 - `Experience` - Account age in days
 - `Stars` - Total starred repositories
@@ -197,16 +205,19 @@ You can filter trophy display by specifying achievement titles.
 **Examples:**
 
 Show only Followers trophy:
+
 ```
 https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&title=Followers
 ```
 
 Show multiple trophies:
+
 ```
 https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&title=Stars,Followers,Commits
 ```
 
 Exclude specific trophies:
+
 ```
 https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&title=-Stars,-Followers
 ```
@@ -216,6 +227,7 @@ https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&title=-Stars,-Followers
 You can filter trophy display by rank tier.
 
 **Available Ranks:**
+
 - `c` or `bronze` - Bronze tier
 - `b` or `silver` - Silver tier
 - `a` or `gold` - Gold tier
@@ -229,21 +241,25 @@ You can filter trophy display by rank tier.
 **Examples:**
 
 Show only Master rank trophies:
+
 ```
 https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&rank=master
 ```
 
 Show multiple ranks:
+
 ```
 https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&rank=master,diamond,challenger
 ```
 
 Exclude specific ranks:
+
 ```
 https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&rank=-bronze,-silver
 ```
 
-**NOTE:** Since `UNKNOWN` is denoted by `?`, use `rank=?` to include it or `rank=-?` to exclude it.
+**NOTE:** Since `UNKNOWN` is denoted by `?`, use `rank=?` to include it or
+`rank=-?` to exclude it.
 
 ## Specify the maximum row & column size
 
@@ -252,26 +268,31 @@ You can customize the grid layout for trophy display.
 Defaults: `column=6` and `row=3`
 
 **Restrict by row only:**
+
 ```
 https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&row=2
 ```
 
 **Restrict by column only:**
+
 ```
 https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&column=4
 ```
 
 **Restrict row and column:**
+
 ```
 https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&row=2&column=3
 ```
 
 **Adaptive width (auto-fit columns):**
+
 ```
 https://YOUR-DEPLOYMENT.vercel.app/?theme=lol&column=-1
 ```
 
-When `column=-1`, the width adapts to fit trophies, and the `row` parameter is ignored.
+When `column=-1`, the width adapts to fit trophies, and the `row` parameter is
+ignored.
 
 ## Theme Parameter
 
@@ -287,11 +308,13 @@ https://YOUR-DEPLOYMENT.vercel.app/?theme=lol
 
 ## Planned Themes
 
-We're constantly working on adding more gaming-themed rank icon sets! Currently supported:
+We're constantly working on adding more gaming-themed rank icon sets! Currently
+supported:
 
 - ✅ `lol` - League of Legends rank icons
 
 **Planned themes for future releases:**
+
 - 🎮 Valorant rank icons
 - 🎮 Dota 2 rank icons
 - 🎮 Overwatch rank tiers
@@ -299,7 +322,9 @@ We're constantly working on adding more gaming-themed rank icon sets! Currently 
 - 🎮 Counter-Strike rank emblems
 - 🎮 COD Mobile rank badges
 
-If you have suggestions for other game rank icons or themes, feel free to open an issue or contribute! Check [CONTRIBUTING.md](./CONTRIBUTING.md) for more details.
+If you have suggestions for other game rank icons or themes, feel free to open
+an issue or contribute! Check [CONTRIBUTING.md](./CONTRIBUTING.md) for more
+details.
 
 ## Margin Width
 
@@ -361,15 +386,23 @@ deno run --allow-net --allow-env --allow-read --allow-write ./render_svg.ts USER
 
 ## Recommended Setup: Generate via GitHub Actions (Zero Rate Limits)
 
-While the direct Vercel link works great, if your profile gets a lot of traffic, it could drain your personal Vercel free tier limits.
+While the direct Vercel link works great, if your profile gets a lot of traffic,
+it could drain your personal Vercel free tier limits.
 
-We highly recommend using this provided GitHub Action. It wakes up once a day, asks your Vercel app for the generated image, and saves it directly into your repository. This means your profile loads the image instantly from GitHub's static CDN, and your Vercel app only runs once every 24 hours!
+We highly recommend using this provided GitHub Action. It wakes up once a day,
+asks your Vercel app for the generated image, and saves it directly into your
+repository. This means your profile loads the image instantly from GitHub's
+static CDN, and your Vercel app only runs once every 24 hours!
 
 ### Step 1: Deploy your Vercel API
-Follow the [Setup Instructions](#setup-instructions) above to deploy your own instance to Vercel and copy your new `api_url`.
+
+Follow the [Setup Instructions](#setup-instructions) above to deploy your own
+instance to Vercel and copy your new `api_url`.
 
 ### Step 2: Create the Workflow File
-In your profile repository (the one named `username/username`), create a new file at `.github/workflows/update-trophies.yml` and paste the following code:
+
+In your profile repository (the one named `username/username`), create a new
+file at `.github/workflows/update-trophies.yml` and paste the following code:
 
 ```yaml
 name: Update Game Trophies
@@ -406,7 +439,9 @@ jobs:
 ```
 
 ### Step 3: Display the Image in your README
-Because the Action saves the image directly into your repository, you do not need to link to Vercel in your Markdown.
+
+Because the Action saves the image directly into your repository, you do not
+need to link to Vercel in your Markdown.
 
 Update your README.md to point to the local file:
 
@@ -415,7 +450,10 @@ Update your README.md to point to the local file:
   <img src="./trophy.svg" alt="My GitHub Game Trophies" />
 </p>
 ```
-Note: After committing the workflow file, go to the Actions tab in your repository and manually trigger the "Update Game Trophies" workflow to generate your first image!
+
+Note: After committing the workflow file, go to the Actions tab in your
+repository and manually trigger the "Update Game Trophies" workflow to generate
+your first image!
 
 # Contribution Guide
 

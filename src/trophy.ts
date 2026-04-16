@@ -84,11 +84,23 @@ export class Trophy {
       NEXT_RANK_BAR,
     );
     const clip = 8;
-    const outerPath = `M${clip} 0 H${panelSize - clip} L${panelSize} ${clip} V${panelSize - clip} L${panelSize - clip} ${panelSize} H${clip} L0 ${panelSize - clip} V${clip} Z`;
+    const outerPath = `M${clip} 0 H${panelSize - clip} L${panelSize} ${clip} V${
+      panelSize - clip
+    } L${panelSize - clip} ${panelSize} H${clip} L0 ${
+      panelSize - clip
+    } V${clip} Z`;
     const innerInset = 1;
     const innerSize = panelSize - innerInset * 2;
     const innerClip = 7;
-    const innerPath = `M${innerInset + innerClip} ${innerInset} H${innerInset + innerSize - innerClip} L${innerInset + innerSize} ${innerInset + innerClip} V${innerInset + innerSize - innerClip} L${innerInset + innerSize - innerClip} ${innerInset + innerSize} H${innerInset + innerClip} L${innerInset} ${innerInset + innerSize - innerClip} V${innerInset + innerClip} Z`;
+    const innerPath = `M${innerInset + innerClip} ${innerInset} H${
+      innerInset + innerSize - innerClip
+    } L${innerInset + innerSize} ${innerInset + innerClip} V${
+      innerInset + innerSize - innerClip
+    } L${innerInset + innerSize - innerClip} ${innerInset + innerSize} H${
+      innerInset + innerClip
+    } L${innerInset} ${innerInset + innerSize - innerClip} V${
+      innerInset + innerClip
+    } Z`;
     return `
         <svg
           x="${x}"
@@ -99,8 +111,12 @@ export class Trophy {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path d="${outerPath}" stroke="${CARD_BORDER}" fill="${PRIMARY}" stroke-opacity="${noFrame ? "0" : "1"}" fill-opacity="${noBackground ? "0" : "1"}" />
-          <path d="${innerPath}" stroke="${CARD_HIGHLIGHT}" fill="none" stroke-opacity="${noFrame ? "0" : "0.9"}" />
+          <path d="${outerPath}" stroke="${CARD_BORDER}" fill="${PRIMARY}" stroke-opacity="${
+      noFrame ? "0" : "1"
+    }" fill-opacity="${noBackground ? "0" : "1"}" />
+          <path d="${innerPath}" stroke="${CARD_HIGHLIGHT}" fill="none" stroke-opacity="${
+      noFrame ? "0" : "0.9"
+    }" />
           ${getTrophyIcon(theme, this.rank, iconTheme)}
           <text x="50%" y="18" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="13" fill="${SECONDARY}">${this.title}</text>
           <text x="50%" y="85" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10.5" fill="${TEXT}">${this.topMessage}</text>

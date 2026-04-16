@@ -63,17 +63,17 @@ export class TrophyList {
   }
   filterByRanks(ranks: Array<string>) {
     if (ranks.some((rank) => rank.includes("-"))) {
-      const excludedRanks = new Set(ranks.flatMap((rank) =>
-        resolveRankFilterAliases(rank.substring(1))
-      ));
+      const excludedRanks = new Set(
+        ranks.flatMap((rank) => resolveRankFilterAliases(rank.substring(1))),
+      );
       this.trophies = this.trophies.filter((trophy) =>
         !excludedRanks.has(trophy.rank)
       );
       return;
     }
-    const includedRanks = new Set(ranks.flatMap((rank) =>
-      resolveRankFilterAliases(rank)
-    ));
+    const includedRanks = new Set(
+      ranks.flatMap((rank) => resolveRankFilterAliases(rank)),
+    );
     this.trophies = this.trophies.filter((trophy) =>
       includedRanks.has(trophy.rank)
     );

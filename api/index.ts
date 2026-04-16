@@ -117,7 +117,10 @@ async function app(req: Request): Promise<Response> {
     );
   }
 
-  const requestedUsername = params.getStringValue("username", configuredUsername)
+  const requestedUsername = params.getStringValue(
+    "username",
+    configuredUsername,
+  )
     .trim();
   if (requestedUsername.length === 0) {
     return htmlResponse(400, "<h2>Username is required.</h2>");
