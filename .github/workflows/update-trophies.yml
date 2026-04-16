@@ -3,7 +3,7 @@ name: Generate GitHub Trophies
 on:
   schedule:
     - cron: "0 0 * * *"
-  workflow_dispatch:
+  workflow_dispatch: 
 
 permissions:
   contents: write
@@ -20,10 +20,20 @@ jobs:
         with:
           deno-version: v1.x
 
-      - name: Run generation script
-        run: deno run --allow-net --allow-env --allow-read --allow-write ./render_svg.ts "harshitt13" "./trophy.svg" "default" "https://api.github.com"
+      - name: Start Local Server in Background
+        # The '&' at the end is critical: it runs the server in the background 
+        # so the workflow can move on to the next steps.
+        run: deno task start &
         env:
+          # Your app needs this token to fetch your stats from GitHub without rate limits
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Wait for server to boot
+        run: sleep 10
+
+      - name: Generate Trophy Image
+        # Now we point the downloader to the local background server
+        run: deno run --allow-net --allow-env --allow-read --allow-write ./render_svg.ts "harshitt13" "./trophy.svg" "default" "http://localhost:8080"
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
