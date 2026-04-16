@@ -18,26 +18,25 @@ const notFoundGithubResponseMock = await import(
 
 import { ServiceError } from "../../Types/index.ts";
 
-// Unfortunatelly, The spy is a global instance
-// We can't reset mock as Jest does.
+// We map exactly 1 promise per test since the environment 
+// uses a single token and does not trigger secondary retries.
 stub(
   soxa,
   "post",
   returnsNext([
-    // Should get data in first try
+    // Should get data in first try (Test 1)
     Promise.resolve(successGithubResponseMock.default),
-    // Should throw NOT FOUND (requestUserInfo makes 1 combined API call)
-    // Each call makes 2 attempts (one per token), so 2 promises total
+    
+    // Should throw NOT FOUND (Test 2)
     Promise.resolve(notFoundGithubResponseMock.default),
+    
+    // Should throw NOT FOUND even if request the user only (Test 3)
     Promise.resolve(notFoundGithubResponseMock.default),
-    // Should throw NOT FOUND even if request the user only
-    Promise.resolve(notFoundGithubResponseMock.default),
-    Promise.resolve(notFoundGithubResponseMock.default),
-    // Should throw RATE LIMIT
+    
+    // Should throw RATE LIMIT (Test 4)
     Promise.resolve(rateLimitMock.default.rate_limit),
-    Promise.resolve(rateLimitMock.default.rate_limit),
-    // Should throw RATE LIMIT Exceed
-    Promise.resolve(rateLimitMock.default.rate_limit),
+    
+    // Should throw RATE LIMIT Exceed (Test 5)
     Promise.resolve(rateLimitMock.default.exceeded),
   ]),
 );
@@ -61,6 +60,7 @@ Deno.test("Should throw NOT FOUND", async () => {
   if (!(error instanceof ServiceError)) return;
   assertEquals(error.code, 404);
 });
+
 Deno.test("Should throw NOT FOUND even if request the user only", async () => {
   const provider = new GithubApiService();
   const result = await provider.requestUserRepository("test");
