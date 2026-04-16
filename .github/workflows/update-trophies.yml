@@ -14,6 +14,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          # This ensures the action has permission to push back to the repo
+          token: ${{ secrets.TROPHY_TOKEN }}
 
       - name: Setup Deno
         uses: denoland/setup-deno@v1
@@ -29,15 +32,19 @@ jobs:
 
       - name: Wait for server (Health Check)
         run: |
-          for i in {1..10}; do
-            curl -s http://localhost:8080 > /dev/null && break || sleep 5;
+          for i in {1..12}; do
+            curl -s http://localhost:8080 > /dev/null && echo "Server is UP" && break || (echo "Waiting for server..." && sleep 5);
           done
 
       - name: Generate Trophy Image
-        run: deno run --allow-net --allow-env --allow-read --allow-write ./render_svg.ts "harshitt13" "./trophy.svg" "default" "http://localhost:8080"
+        run: |
+          deno run --allow-net --allow-env --allow-read --allow-write ./render_svg.ts "harshitt13" "./trophy.svg" "default" "http://localhost:8080"
+          # Verify if the file is actual SVG or just an error message
+          head -n 1 trophy.svg
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: update github profile trophies"
-          file_pattern: "trophy.svg"
+          # Removing file_pattern can sometimes help if the pathing is weird
+          push_options: '--force'
