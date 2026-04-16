@@ -23,13 +23,15 @@ jobs:
       - name: Start Local Server in Background
         run: deno task start &
         env:
-          # Mapping the secret to the specific names the fork expects
           GITHUB_TOKEN1: ${{ secrets.TROPHY_TOKEN }}
           GITHUB_TOKEN2: ${{ secrets.TROPHY_TOKEN }}
           PROFILE_USERNAME: harshitt13 
 
-      - name: Wait for server to boot
-        run: sleep 10
+      - name: Wait for server (Health Check)
+        run: |
+          for i in {1..10}; do
+            curl -s http://localhost:8080 > /dev/null && break || sleep 5;
+          done
 
       - name: Generate Trophy Image
         run: deno run --allow-net --allow-env --allow-read --allow-write ./render_svg.ts "harshitt13" "./trophy.svg" "default" "http://localhost:8080"
@@ -38,4 +40,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: update github profile trophies"
-          file_pattern: "*.svg"
+          file_pattern: "trophy.svg"
