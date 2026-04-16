@@ -23,8 +23,9 @@ jobs:
       - name: Start Local Server in Background
         run: deno task start &
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # This tells the local server which user owns it
+          # Mapping the secret to the specific names the fork expects
+          GITHUB_TOKEN1: ${{ secrets.TROPHY_TOKEN }}
+          GITHUB_TOKEN2: ${{ secrets.TROPHY_TOKEN }}
           PROFILE_USERNAME: harshitt13 
 
       - name: Wait for server to boot
