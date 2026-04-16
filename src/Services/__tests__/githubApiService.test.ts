@@ -18,7 +18,7 @@ const notFoundGithubResponseMock = await import(
 
 import { ServiceError } from "../../Types/index.ts";
 
-// We map exactly 1 promise per test since the environment 
+// We map exactly 1 promise per test since the environment
 // uses a single token and does not trigger secondary retries.
 stub(
   soxa,
@@ -26,16 +26,16 @@ stub(
   returnsNext([
     // Should get data in first try (Test 1)
     Promise.resolve(successGithubResponseMock.default),
-    
+
     // Should throw NOT FOUND (Test 2)
     Promise.resolve(notFoundGithubResponseMock.default),
-    
+
     // Should throw NOT FOUND even if request the user only (Test 3)
     Promise.resolve(notFoundGithubResponseMock.default),
-    
+
     // Should throw RATE LIMIT (Test 4)
     Promise.resolve(rateLimitMock.default.rate_limit),
-    
+
     // Should throw RATE LIMIT Exceed (Test 5)
     Promise.resolve(rateLimitMock.default.exceeded),
   ]),
