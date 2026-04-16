@@ -2,36 +2,31 @@ name: Generate GitHub Trophies
 
 on:
   schedule:
-    # Runs at 00:00 UTC every day. You can adjust this schedule.
     - cron: "0 0 * * *"
-  # This line allows you to trigger the action manually from the Actions tab
   workflow_dispatch: 
 
 permissions:
-  contents: write # Required to push the new images back to your repo
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
         with:
-          node-version: '20' # Update if your project uses a different version
+          deno-version: v1.x
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Run generation script
+        run: deno run --allow-net --allow-env --allow-read --allow-write ./render_svg.ts "harshitt13" "./trophy.svg" "default" "https://api.github.com"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Generate Trophy Images
-        # IMPORTANT: Replace this with the command your project uses 
-        # to generate and save the SVGs/images locally.
-        run: npm run generate 
-
-      - name: Commit and Push Changes
+      - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: update github profile trophies [skip ci]"
-          file_pattern: "*.svg" # Change this if your images are saved in a specific folder (e.g., "dist/*.svg")
+          commit_message: "chore: update github profile trophies"
+          file_pattern: "*.svg"
