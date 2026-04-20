@@ -174,7 +174,7 @@
   
           <text x="50%" y="18" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="13" fill="#e9eef7">Commits</text>
           <text x="50%" y="85" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10.5" fill="#a5b1c3">Hyper Committer</text>
-          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">463pt</text>
+          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">460pt</text>
           
     <style>
     @keyframes CommitsRankAnimation {
@@ -191,7 +191,7 @@
     }
     </style>
     <path d="M15 101 H95 V104.2 H15 Z" opacity="0.3" fill="#6fb2ff" />
-    <path id="Commits-rank-progress" d="M15 101 H85.13333333333334 V104.2 H15 Z" fill="#6fb2ff" />
+    <path id="Commits-rank-progress" d="M15 101 H84.33333333333334 V104.2 H15 Z" fill="#6fb2ff" />
   
         </svg>
         
@@ -268,7 +268,7 @@
   
           <text x="50%" y="18" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="13" fill="#e9eef7">Followers</text>
           <text x="50%" y="85" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10.5" fill="#a5b1c3">Dynamic User</text>
-          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">29pt</text>
+          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">30pt</text>
           
     <style>
     @keyframes FollowersRankAnimation {
@@ -285,7 +285,7 @@
     }
     </style>
     <path d="M15 101 H95 V104.2 H15 Z" opacity="0.3" fill="#6fb2ff" />
-    <path id="Followers-rank-progress" d="M15 101 H39 V104.2 H15 Z" fill="#6fb2ff" />
+    <path id="Followers-rank-progress" d="M15 101 H41.666666666666664 V104.2 H15 Z" fill="#6fb2ff" />
   
         </svg>
         
@@ -456,7 +456,7 @@
   
           <text x="50%" y="18" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="13" fill="#e9eef7">Issues</text>
           <text x="50%" y="85" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10.5" fill="#a5b1c3">First Issue</text>
-          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">3pt</text>
+          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">5pt</text>
           
     <style>
     @keyframes IssuesRankAnimation {
@@ -473,7 +473,7 @@
     }
     </style>
     <path d="M15 101 H95 V104.2 H15 Z" opacity="0.3" fill="#6fb2ff" />
-    <path id="Issues-rank-progress" d="M15 101 H32.77777777777778 V104.2 H15 Z" fill="#6fb2ff" />
+    <path id="Issues-rank-progress" d="M15 101 H50.55555555555556 V104.2 H15 Z" fill="#6fb2ff" />
   
         </svg>
         
