@@ -362,7 +362,7 @@
   
           <text x="50%" y="18" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="13" fill="#e9eef7">Reviews</text>
           <text x="50%" y="85" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10.5" fill="#a5b1c3">Active Reviewer</text>
-          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">10pt</text>
+          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">11pt</text>
           
     <style>
     @keyframes ReviewsRankAnimation {
@@ -379,7 +379,7 @@
     }
     </style>
     <path d="M15 101 H95 V104.2 H15 Z" opacity="0.3" fill="#6fb2ff" />
-    <path id="Reviews-rank-progress" d="M15 101 H28.333333333333332 V104.2 H15 Z" fill="#6fb2ff" />
+    <path id="Reviews-rank-progress" d="M15 101 H35 V104.2 H15 Z" fill="#6fb2ff" />
   
         </svg>
         
