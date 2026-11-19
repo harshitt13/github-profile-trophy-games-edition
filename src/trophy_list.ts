@@ -30,15 +30,15 @@ export class TrophyList {
       new TotalPullRequestTrophy(userInfo.totalPullRequests),
       new TotalRepositoryTrophy(userInfo.totalRepositories),
       new TotalReviewsTrophy(userInfo.totalReviews),
-      new AllSuperRankTrophy(this.isAllSRank),
+      new AccountDurationTrophy(userInfo.durationDays),
       new MultipleLangTrophy(userInfo.languageCount),
       new LongTimeAccountTrophy(userInfo.durationYear),
       new AncientAccountTrophy(userInfo.ancientAccount),
       new OGAccountTrophy(userInfo.ogAccount),
       new Joined2020Trophy(userInfo.joined2020),
       new MultipleOrganizationsTrophy(userInfo.totalOrganizations),
-      new AccountDurationTrophy(userInfo.durationDays),
     ];
+    this.trophies.push(new AllSuperRankTrophy(this.isAllSRank));
   }
   get length() {
     return this.trophies.length;
@@ -47,7 +47,9 @@ export class TrophyList {
     return this.trophies;
   }
   private get isAllSRank() {
-    return this.trophies.every((trophy) => trophy.rank.slice(0, 1) === RANK.S)
+    return this.trophies.filter((trophy) => !trophy.hidden).every((trophy) =>
+        trophy.rank.slice(0, 1) === RANK.S
+      )
       ? 1
       : 0;
   }
@@ -62,22 +64,18 @@ export class TrophyList {
     });
   }
   filterByRanks(ranks: Array<string>) {
-    if (ranks.some((rank) => rank.includes("-"))) {
-      const excludedRanks = new Set(
-        ranks.flatMap((rank) => resolveRankFilterAliases(rank.substring(1))),
-      );
-      this.trophies = this.trophies.filter((trophy) =>
-        !excludedRanks.has(trophy.rank)
-      );
-      return;
-    }
-    const includedRanks = new Set(
-      ranks.flatMap((rank) => resolveRankFilterAliases(rank)),
+    const included = ranks.filter((rank) => !rank.startsWith("-"))
+      .flatMap(resolveRankFilterAliases);
+    const excluded = new Set(
+      ranks.filter((rank) => rank.startsWith("-"))
+        .flatMap((rank) => resolveRankFilterAliases(rank.slice(1))),
     );
     this.trophies = this.trophies.filter((trophy) =>
-      includedRanks.has(trophy.rank)
+      (included.length === 0 || included.includes(trophy.rank)) &&
+      !excluded.has(trophy.rank)
     );
   }
+
   filterByExclusionTitles(titles: Array<string>) {
     const excludeTitles = titles.filter((title) => title.startsWith("-")).map(
       (title) => title.substring(1),

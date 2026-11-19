@@ -46,7 +46,7 @@ export class Card {
     trophyList.sortByRank();
 
     if (this.maxColumn === -1) {
-      this.maxColumn = trophyList.length;
+      this.maxColumn = Math.max(1, trophyList.length);
       this.width = this.panelSize * this.maxColumn +
         this.marginWidth * (this.maxColumn - 1);
     }
@@ -59,14 +59,17 @@ export class Card {
       width="${this.width}"
       height="${this.height}"
       viewBox="0 0 ${this.width} ${this.height}"
+      role="img"
+      aria-labelledby="trophy-title"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
+      <title id="trophy-title">GitHub achievements with League of Legends ranks</title>
       ${this.renderTrophy(trophyList, theme)}
     </svg>`;
   }
   private getRow(trophyList: TrophyList) {
-    let row = Math.floor((trophyList.length - 1) / this.maxColumn) + 1;
+    let row = Math.max(1, Math.ceil(trophyList.length / this.maxColumn));
     if (row > this.maxRow) {
       row = this.maxRow;
     }
@@ -78,7 +81,7 @@ export class Card {
   }
 
   private renderTrophy(trophyList: TrophyList, theme: Theme) {
-    return trophyList.getArray.reduce(
+    return trophyList.getArray.slice(0, this.maxColumn * this.maxRow).reduce(
       (sum: string, trophy: Trophy, i: number) => {
         const currentColumn = i % this.maxColumn;
         const currentRow = Math.floor(i / this.maxColumn);

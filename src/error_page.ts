@@ -115,16 +115,16 @@ abstract class BaseError {
 }
 
 export class Error400 extends BaseError {
-  readonly status = 400;
-  readonly message = "Bad Request";
+  override readonly status = 400;
+  override readonly message = "Bad Request";
 }
 
 export class Error419 extends BaseError {
-  readonly status = 419;
-  readonly message = "Rate Limit Exceeded";
+  override readonly status = 419;
+  override readonly message = "Rate Limit Exceeded";
 }
 
 export class Error404 extends BaseError {
-  readonly status = 404;
-  readonly message = "Not Found";
+  override readonly status = 404;
+  override readonly message = "Not Found";
 }

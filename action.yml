@@ -1,5 +1,5 @@
 name: "GitHub Profile Trophy - Games Edition"
-description: "Generate game rank badges for your GitHub profile using your self-hosted Vercel API to bypass rate limits."
+description: "Generate game rank badges for your GitHub profile directly from GitHub data."
 author: "harshitt13"
 
 branding:
@@ -11,31 +11,35 @@ inputs:
     description: "GitHub username to generate the trophy for"
     required: true
   api_url:
-    description: "Your self-hosted Vercel URL (e.g., https://your-app.vercel.app)"
-    required: true
+    description: "Optional deployed API URL; generates directly when omitted"
+    required: false
   output_path:
     description: "Output path to write the SVG"
     required: true
     default: "trophy.svg"
   token:
     description: "PAT or token to use for GitHub API"
-    required: true
+    required: false
   theme:
     description: "Theme for the card (e.g., lol)"
     required: false
-    default: "default"
+    default: "lol"
 
 runs:
   using: "composite"
   steps:
     - name: Setup Deno
-      uses: denoland/setup-deno@v1
+      uses: denoland/setup-deno@v2
       with:
-        deno-version: v1.x
+        deno-version: v2.x
 
     - name: Generate trophy
       shell: bash
       env:
-        GITHUB_TOKEN1: ${{ inputs.token }}
+        GITHUB_TOKEN1: ${{ inputs.token || github.token }}
+        TROPHY_USERNAME: ${{ inputs.username }}
+        TROPHY_OUTPUT: ${{ inputs.output_path }}
+        TROPHY_THEME: ${{ inputs.theme }}
+        TROPHY_API: ${{ inputs.api_url }}
       run: |
-        deno run --allow-net --allow-env --allow-read --allow-write ${{ github.action_path }}/render_svg.ts "${{ inputs.username }}" "${{ inputs.output_path }}" "${{ inputs.theme }}" "${{ inputs.api_url }}"
+        deno run --allow-net --allow-env --allow-read --allow-write "$GITHUB_ACTION_PATH/render_svg.ts" "$TROPHY_USERNAME" "$TROPHY_OUTPUT" "$TROPHY_THEME" "$TROPHY_API"

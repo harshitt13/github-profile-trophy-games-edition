@@ -1,10 +1,11 @@
 {
   "tasks": {
+    "generate": "deno run --allow-env --allow-net --allow-write=trophy.svg render_svg.ts",
     "start": "deno run -A main.ts",
     "debug": "deno run --inspect-brk -A main.ts",
     "format": "deno fmt",
     "lint": "deno lint",
-    "test": "ENV_TYPE=test deno test --allow-env"
+    "test": "deno test --allow-env"
   },
   "lint": {
     "rules": {
@@ -12,5 +13,12 @@
         "no-import-prefix"
       ]
     }
+  },
+  "fmt": {
+    "exclude": [
+      "trophy.svg",
+      "src/rank_icon_data.ts",
+      "src/Services/__mocks__/"
+    ]
   }
 }

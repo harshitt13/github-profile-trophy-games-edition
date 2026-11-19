@@ -140,14 +140,7 @@ async function app(req: Request): Promise<Response> {
   const column = resolveColumn(
     params.getNumberValue("column", CONSTANTS.DEFAULT_MAX_COLUMN),
   );
-  const rawTheme = params.get("theme")?.trim() ?? "";
-  if (rawTheme.length === 0) {
-    return htmlResponse(
-      400,
-      "<h2>Theme is required.</h2><p>Use ?theme=lol for this deployment.</p>",
-    );
-  }
-  const iconTheme = rawTheme;
+  const iconTheme = params.get("theme")?.trim() || "lol";
   const theme = DEFAULT_THEME;
   const marginWidth = clampInteger(
     params.getNumberValue(
