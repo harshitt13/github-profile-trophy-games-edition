@@ -3,59 +3,15 @@
       width="880"
       height="220"
       viewBox="0 0 880 220"
+      role="img"
+      aria-labelledby="trophy-title"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
+      <title id="trophy-title">GitHub achievements with League of Legends ranks</title>
       
         <svg
           x="0"
-          y="0"
-          width="110"
-          height="110"
-          viewBox="0 0 110 110"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M8 0 H102 L110 8 V102 L102 110 H8 L0 102 V8 Z" stroke="#2b3443" fill="#0f1318" stroke-opacity="1" fill-opacity="1" />
-          <path d="M8 1 H102 L109 8 V102 L102 109 H8 L1 102 V8 Z" stroke="#3f4c61" fill="none" stroke-opacity="0.9" />
-          
-  <svg x="25" y="22" width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-    <image
-      x="0"
-      y="0"
-      width="60"
-      height="60"
-      opacity="1"
-      preserveAspectRatio="xMidYMid meet"
-      href="data:image/png;base64,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"
-    />
-  </svg>
-  
-          <text x="50%" y="18" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="13" fill="#e9eef7">AllSuperRank</text>
-          <text x="50%" y="85" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10.5" fill="#a5b1c3">Challenger</text>
-          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">All S Rank</text>
-          
-    <style>
-    @keyframes AllSuperRankRankAnimation {
-      from {
-        transform: scaleX(0);
-      }
-      to {
-        transform: scaleX(1);
-      }
-    }
-    #AllSuperRank-rank-progress{
-      transform-origin: 15px 101px;
-      animation: AllSuperRankRankAnimation 1s forwards ease-in-out;
-    }
-    </style>
-    <path d="M15 101 H95 V104.2 H15 Z" opacity="0.3" fill="#6fb2ff" />
-    <path id="AllSuperRank-rank-progress" d="M15 101 H95 V104.2 H15 Z" fill="#6fb2ff" />
-  
-        </svg>
-        
-        <svg
-          x="110"
           y="0"
           width="110"
           height="110"
@@ -102,7 +58,7 @@
         </svg>
         
         <svg
-          x="220"
+          x="110"
           y="0"
           width="110"
           height="110"
@@ -149,7 +105,7 @@
         </svg>
         
         <svg
-          x="330"
+          x="220"
           y="0"
           width="110"
           height="110"
@@ -196,7 +152,7 @@
         </svg>
         
         <svg
-          x="440"
+          x="330"
           y="0"
           width="110"
           height="110"
@@ -221,7 +177,7 @@
   
           <text x="50%" y="18" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="13" fill="#e9eef7">Commits</text>
           <text x="50%" y="85" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10.5" fill="#a5b1c3">Hyper Committer</text>
-          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">379pt</text>
+          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">383pt</text>
           
     <style>
     @keyframes CommitsRankAnimation {
@@ -238,12 +194,12 @@
     }
     </style>
     <path d="M15 101 H95 V104.2 H15 Z" opacity="0.3" fill="#6fb2ff" />
-    <path id="Commits-rank-progress" d="M15 101 H62.733333333333334 V104.2 H15 Z" fill="#6fb2ff" />
+    <path id="Commits-rank-progress" d="M15 101 H63.8 V104.2 H15 Z" fill="#6fb2ff" />
   
         </svg>
         
         <svg
-          x="550"
+          x="440"
           y="0"
           width="110"
           height="110"
@@ -290,7 +246,7 @@
         </svg>
         
         <svg
-          x="660"
+          x="550"
           y="0"
           width="110"
           height="110"
@@ -337,7 +293,7 @@
         </svg>
         
         <svg
-          x="770"
+          x="660"
           y="0"
           width="110"
           height="110"
@@ -384,8 +340,8 @@
         </svg>
         
         <svg
-          x="0"
-          y="110"
+          x="770"
+          y="0"
           width="110"
           height="110"
           viewBox="0 0 110 110"
@@ -431,7 +387,7 @@
         </svg>
         
         <svg
-          x="110"
+          x="0"
           y="110"
           width="110"
           height="110"
@@ -478,7 +434,7 @@
         </svg>
         
         <svg
-          x="220"
+          x="110"
           y="110"
           width="110"
           height="110"
@@ -503,7 +459,7 @@
   
           <text x="50%" y="18" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="13" fill="#e9eef7">Issues</text>
           <text x="50%" y="85" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10.5" fill="#a5b1c3">Middle Issuer</text>
-          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">12pt</text>
+          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">13pt</text>
           
     <style>
     @keyframes IssuesRankAnimation {
@@ -520,7 +476,7 @@
     }
     </style>
     <path d="M15 101 H95 V104.2 H15 Z" opacity="0.3" fill="#6fb2ff" />
-    <path id="Issues-rank-progress" d="M15 101 H31 V104.2 H15 Z" fill="#6fb2ff" />
+    <path id="Issues-rank-progress" d="M15 101 H39 V104.2 H15 Z" fill="#6fb2ff" />
   
         </svg>
         
