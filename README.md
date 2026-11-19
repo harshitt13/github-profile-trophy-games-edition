@@ -63,10 +63,44 @@ composite Action inputs remain available.
 | `no-frame=true`        | Hide card borders                                               |
 
 Ranks: Iron, Bronze, Silver, Gold, Platinum, Diamond, Master, Grandmaster,
-Challenger. Secret achievements also use Challenger emblems. Scores follow the
-original trophy thresholds. Commit and review counts come from GitHub's
-contributions collection, not lifetime totals. Stars and languages are based on
-the repositories returned by the API query.
+Challenger. Secret achievements also use Challenger emblems.
+
+## How ranks are calculated
+
+Each category receives the highest rank whose minimum score it meets. These are
+custom achievement milestones, not GitHub percentiles or a measure of code
+quality.
+
+| Category           | Bronze | Silver | Gold | Platinum | Diamond | Master | Grandmaster | Challenger |
+| ------------------ | ------ | ------ | ---- | -------- | ------- | ------ | ----------- | ---------- |
+| Stars              | 1      | 10     | 30   | 50       | 100     | 200    | 700         | 2000       |
+| Commits            | 1      | 10     | 100  | 200      | 500     | 1000   | 2000        | 4000       |
+| Followers          | 1      | 10     | 20   | 50       | 100     | 200    | 400         | 1000       |
+| Issues / PRs       | 1      | 10     | 20   | 50       | 100     | 200    | 500         | 1000       |
+| Repositories       | 1      | 10     | 20   | 30       | 35      | 40     | 45          | 50         |
+| Reviews            | 1      | 3      | 8    | 20       | 30      | 45     | 57          | 70         |
+| Experience (years) | 0.5    | 1.5    | 3    | 5        | 7.5     | 10     | 15          | 20         |
+
+Experience uses actual account age in days, with thresholds equal to
+`floor(years * 365.25)`. LongTimeUser unlocks at the tenth UTC anniversary.
+AllSuperRank requires all eight base categories at Master or higher; secret
+achievements are excluded from that check.
+
+Commits and reviews use GitHub's default contributions-collection time window
+(the past year), not lifetime totals. Restricted contribution counts are
+excluded from commits because they can include other contribution types. Private
+activity visibility depends on the token and profile settings.
+
+Stars are summed across all pages of owned repositories visible to the token.
+Languages are deduplicated across those repositories, requesting up to 100 per
+repository. MultiLanguage means ten languages in owned repositories, not ten
+languages contributed to across all of GitHub. Repositories include forks.
+Issues and PRs count authored items across all states; PRs need not be merged.
+Followers and organization counts reflect the token's visible data.
+
+The progress bar measures advancement within the current tier, resets on
+promotion, and stays full at the highest tier. Updated calculations take effect
+when the SVG is next generated; the existing file URL stays unchanged.
 
 ## Maintenance
 

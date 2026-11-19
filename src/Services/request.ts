@@ -19,6 +19,8 @@ export async function requestGithubData<T = unknown>(
   }) as QueryDefaultResponse<{ user: T }>;
   const responseData = response.data;
 
+  if (responseData?.errors?.length) throw handleError(responseData);
+
   if (responseData?.data?.user) {
     return responseData.data.user;
   }
@@ -39,7 +41,7 @@ function handleError(
 
   if (Array.isArray(arrayErrors) && arrayErrors.length > 0) {
     isRateLimitExceeded = arrayErrors.some((error) =>
-      error.type.includes(EServiceKindError.RATE_LIMIT)
+      (error.type ?? "").includes(EServiceKindError.RATE_LIMIT)
     );
   }
 

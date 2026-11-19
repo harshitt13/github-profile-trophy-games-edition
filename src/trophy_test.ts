@@ -63,3 +63,40 @@ Deno.test("row limit omits trophies beyond the visible grid", () => {
   );
   assertEquals((svg.match(/<image/g) || []).length, 1);
 });
+
+Deno.test("AllSuperRank ignores locked secrets but requires every base category", () => {
+  const base = {
+    ...user,
+    totalStargazers: 200,
+    totalCommits: 1000,
+    totalFollowers: 200,
+    totalIssues: 200,
+    totalPullRequests: 200,
+    totalRepositories: 40,
+    totalReviews: 45,
+    durationDays: 3652,
+  };
+  const unlocked = new TrophyList(base);
+  assertEquals(
+    unlocked.getArray.find((t) => t.title === "AllSuperRank")?.rank,
+    RANK.SECRET,
+  );
+  for (
+    const key of [
+      "totalStargazers",
+      "totalCommits",
+      "totalFollowers",
+      "totalIssues",
+      "totalPullRequests",
+      "totalRepositories",
+      "totalReviews",
+      "durationDays",
+    ] as const
+  ) {
+    const locked = new TrophyList({ ...base, [key]: 0 });
+    assertEquals(
+      locked.getArray.find((t) => t.title === "AllSuperRank")?.rank,
+      RANK.UNKNOWN,
+    );
+  }
+});

@@ -41,7 +41,10 @@ export class Trophy {
   }
   private calculateNextRankPercentage() {
     if (this.rank === RANK.UNKNOWN) {
-      return 0;
+      const firstThreshold = Math.min(
+        ...this.rankConditions.map((r) => r.requiredScore),
+      );
+      return firstThreshold > 0 ? Math.max(0, this.score / firstThreshold) : 0;
     }
     const nextRankIndex = RANK_ORDER.indexOf(this.rank) - 1;
     // When got the max rank
@@ -296,45 +299,46 @@ export class AccountDurationTrophy extends Trophy {
       new RankCondition(
         RANK.SSS,
         "Seasoned Veteran",
-        70, // 20 years
+        Math.floor(20 * 365.25), // 20 years
       ),
       new RankCondition(
         RANK.SS,
         "Grandmaster",
-        55, // 15 years
+        Math.floor(15 * 365.25), // 15 years
       ),
       new RankCondition(
         RANK.S,
         "Master Dev",
-        40, // 10 years
+        Math.floor(10 * 365.25), // 10 years
       ),
       new RankCondition(
         RANK.AAA,
         "Expert Dev",
-        28, // 7.5 years
+        Math.floor(7.5 * 365.25), // 7.5 years
       ),
       new RankCondition(
         RANK.AA,
         "Experienced Dev",
-        18, // 5 years
+        Math.floor(5 * 365.25), // 5 years
       ),
       new RankCondition(
         RANK.A,
         "Intermediate Dev",
-        11, // 3 years
+        Math.floor(3 * 365.25), // 3 years
       ),
       new RankCondition(
         RANK.B,
         "Junior Dev",
-        6, // 1.5 years
+        Math.floor(1.5 * 365.25), // 1.5 years
       ),
       new RankCondition(
         RANK.C,
         "Newbie",
-        2, // 0.5 year
+        Math.floor(0.5 * 365.25), // 0.5 years
       ),
     ];
     super(score, rankConditions);
+    this.bottomMessage = `${Math.floor(score)} days`;
     this.title = "Experience";
     this.filterTitles = ["Experience", "Duration", "Since"];
   }

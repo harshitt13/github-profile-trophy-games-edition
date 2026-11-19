@@ -9,6 +9,7 @@ export type GitHubUserRepository = {
   repositories: {
     totalCount: number;
     nodes: Repository[];
+    pageInfo?: { hasNextPage: boolean; endCursor: string | null };
   };
 };
 
@@ -72,9 +73,10 @@ export class UserInfo {
     userIssue: GitHubUserIssue,
     userPullRequest: GitHubUserPullRequest,
     userRepository: GitHubUserRepository,
+    now = Date.now(),
   ) {
+    // Restricted contributions can include issues, PRs and reviews, not just commits.
     const totalCommits =
-      userActivity.contributionsCollection.restrictedContributionsCount +
       userActivity.contributionsCollection.totalCommitContributions;
     const totalStargazers = userRepository.repositories.nodes.reduce(
       (prev: number, node: Repository) => {
@@ -94,31 +96,19 @@ export class UserInfo {
       }
     });
 
-    // Find the earliest repository creation date
-    let earliestRepoDate = userActivity.createdAt; // start with the oldest possible
-
-    earliestRepoDate = userRepository.repositories.nodes.reduce(
-      (earliest, node) => {
-        return new Date(node.createdAt).getTime() < new Date(earliest).getTime()
-          ? node.createdAt
-          : earliest;
-      },
-      earliestRepoDate,
-    );
-
-    const durationTime = Date.now() -
-      new Date(earliestRepoDate).getTime();
-    const durationYear = new Date(durationTime).getUTCFullYear() - 1970;
-    const durationDays = Math.floor(
-      durationTime / (1000 * 60 * 60 * 24) / 100,
-    );
-    const ancientAccount = new Date(earliestRepoDate).getFullYear() <= 2010
-      ? 1
-      : 0;
-    const joined2020 = new Date(earliestRepoDate).getFullYear() === 2020
-      ? 1
-      : 0;
-    const ogAccount = new Date(earliestRepoDate).getFullYear() <= 2008 ? 1 : 0;
+    const created = new Date(userActivity.createdAt);
+    const current = new Date(now);
+    const durationTime = Math.max(0, now - created.getTime());
+    let durationYear = current.getUTCFullYear() - created.getUTCFullYear();
+    const anniversary = new Date(created);
+    anniversary.setUTCFullYear(current.getUTCFullYear());
+    if (current < anniversary) durationYear--;
+    durationYear = Math.max(0, durationYear);
+    const durationDays = Math.floor(durationTime / (1000 * 60 * 60 * 24));
+    const createdYear = created.getUTCFullYear();
+    const ancientAccount = createdYear < 2010 ? 1 : 0;
+    const joined2020 = createdYear === 2020 ? 1 : 0;
+    const ogAccount = createdYear <= 2008 ? 1 : 0;
 
     this.totalCommits = totalCommits;
     this.totalFollowers = userActivity.followers.totalCount;

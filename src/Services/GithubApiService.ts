@@ -47,9 +47,11 @@ export class GithubApiService extends GithubRepository {
   }
   async requestUserRepository(
     username: string,
+    after?: string,
   ): Promise<GitHubUserRepository | ServiceError> {
     return await this.executeQuery<GitHubUserRepository>(queryUserRepository, {
       username,
+      ...(after ? { after } : {}),
     });
   }
   async requestUserActivity(
@@ -80,6 +82,18 @@ export class GithubApiService extends GithubRepository {
       const result = await this.requestUserAll(username);
       if (result instanceof ServiceError) {
         return result;
+      }
+      let page = result.repositories.pageInfo;
+      const cursors = new Set<string>();
+      while (page?.hasNextPage) {
+        if (!page.endCursor || cursors.has(page.endCursor)) {
+          throw new Error("Repository pagination did not advance");
+        }
+        cursors.add(page.endCursor);
+        const next = await this.requestUserRepository(username, page.endCursor);
+        if (next instanceof ServiceError) return next;
+        result.repositories.nodes.push(...next.repositories.nodes);
+        page = next.repositories.pageInfo;
       }
       return UserInfo.fromCombined(result);
     } catch {
