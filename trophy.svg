@@ -177,7 +177,7 @@
   
           <text x="50%" y="18" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="13" fill="#e9eef7">Commits</text>
           <text x="50%" y="85" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10.5" fill="#a5b1c3">Hyper Committer</text>
-          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">384pt</text>
+          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">386pt</text>
           
     <style>
     @keyframes CommitsRankAnimation {
@@ -194,7 +194,7 @@
     }
     </style>
     <path d="M15 101 H95 V104.2 H15 Z" opacity="0.3" fill="#6fb2ff" />
-    <path id="Commits-rank-progress" d="M15 101 H64.06666666666666 V104.2 H15 Z" fill="#6fb2ff" />
+    <path id="Commits-rank-progress" d="M15 101 H64.6 V104.2 H15 Z" fill="#6fb2ff" />
   
         </svg>
         
@@ -224,7 +224,7 @@
   
           <text x="50%" y="18" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="13" fill="#e9eef7">PullRequest</text>
           <text x="50%" y="85" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10.5" fill="#a5b1c3">Hyper Puller</text>
-          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">64pt</text>
+          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">65pt</text>
           
     <style>
     @keyframes PullRequestRankAnimation {
@@ -241,7 +241,7 @@
     }
     </style>
     <path d="M15 101 H95 V104.2 H15 Z" opacity="0.3" fill="#6fb2ff" />
-    <path id="PullRequest-rank-progress" d="M15 101 H37.400000000000006 V104.2 H15 Z" fill="#6fb2ff" />
+    <path id="PullRequest-rank-progress" d="M15 101 H39 V104.2 H15 Z" fill="#6fb2ff" />
   
         </svg>
         
@@ -365,7 +365,7 @@
   
           <text x="50%" y="18" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="13" fill="#e9eef7">Experience</text>
           <text x="50%" y="85" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10.5" fill="#a5b1c3">Intermediate Dev</text>
-          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">1183 days</text>
+          <text x="50%" y="97" text-anchor="middle" font-family="Consolas,Monaco,monospace" font-weight="700" font-size="10" fill="#a5b1c3">1184 days</text>
           
     <style>
     @keyframes ExperienceRankAnimation {
@@ -382,7 +382,7 @@
     }
     </style>
     <path d="M15 101 H95 V104.2 H15 Z" opacity="0.3" fill="#6fb2ff" />
-    <path id="Experience-rank-progress" d="M15 101 H24.630642954856363 V104.2 H15 Z" fill="#6fb2ff" />
+    <path id="Experience-rank-progress" d="M15 101 H24.740082079343367 V104.2 H15 Z" fill="#6fb2ff" />
   
         </svg>
         
